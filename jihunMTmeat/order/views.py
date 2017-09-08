@@ -1,9 +1,6 @@
 from django.shortcuts import render
 
-# Create your views here.
 
-from django.http import HttpResponse
+def input_order_info(request):
+    return render(request, 'input_order_info.html')
 
-
-def index(request):
-    return HttpResponse("Hi")
