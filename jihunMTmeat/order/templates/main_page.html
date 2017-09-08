@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>지훈이네 MT고기</title>
+</head>
+<body>
+
+
+<form>
+<img src="{% static "meat.jpg" %}" alt="My image"/>
+
+    <div>목살<input type="number"><button>+</button><button>-</button></div>
+    <div>삼겹살<input type="number"><button>+</button><button>-</button></div>
+    <div>합계 <span>0</span></div>
+    <input type="submit" value="주문하기">
+</form>
+</body>
+</html>
