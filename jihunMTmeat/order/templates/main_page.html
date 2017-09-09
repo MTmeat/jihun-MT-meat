@@ -1,4 +1,3 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,10 +8,13 @@
 
 
 <form>
-<img src="{% static "meat.jpg" %}" alt="My image"/>
+    {% load static %}
+    <img src="{% static 'meat.jpg' %}" alt="My image"/>
 
-    <div>목살<input type="number"><button>+</button><button>-</button></div>
-    <div>삼겹살<input type="number"><button>+</button><button>-</button></div>
+    {% for meat_info in meat_price_list %}
+        <div>{{ meat_info.name }} {{ meat_info.price }}<input type="number"><button>+</button><button>-</button></div>
+    {% endfor %}
+
     <div>합계 <span>0</span></div>
     <input type="submit" value="주문하기">
 </form>
