@@ -21,3 +21,8 @@ class Orderer(models.Model):
     eating_date = models.DateTimeField()
     deposit_status = models.CharField(max_length=1, choices=DEPOSIT_CHOICES)
     is_delivery = models.BooleanField(default=False)
+
+
+class MeatPrice(models.Model):
+    name = models.CharField(default='', null=False, max_length=254, primary_key=True)
+    price = models.IntegerField()
