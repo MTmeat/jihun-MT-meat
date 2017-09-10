@@ -26,3 +26,9 @@ class Orderer(models.Model):
 class MeatPrice(models.Model):
     name = models.CharField(default='', null=False, max_length=254, primary_key=True)
     price = models.IntegerField()
+
+
+class MeatOrder(models.Model):
+    orderer = models.ForeignKey('Orderer')
+    meat_price = models.ForeignKey('MeatPrice')
+    count = models.IntegerField()
