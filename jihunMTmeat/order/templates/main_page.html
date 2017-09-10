@@ -3,20 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <title>지훈이네 MT고기</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
 
-
-<form>
     {% load static %}
     <img src="{% static 'meat.jpg' %}" alt="My image"/>
-
+<form>
     {% for meat_info in meat_price_list %}
-        <div>{{ meat_info.name }} {{ meat_info.price }}<input type="number"><button>+</button><button>-</button></div>
+        <div id="{{ meat_info.name }}">
+            {{ meat_info.name }} <span>{{ meat_info.price }}</span>
+            <input type="number" value="0">
+            <button type="button">+</button>
+            <button type="button">-</button>
+        </div>
     {% endfor %}
-
-    <div>합계 <span>0</span></div>
-    <input type="submit" value="주문하기">
+   <input type="submit" value="주문하기">
 </form>
+    <div>합계 <span id="total">0</span></div>
+
+<script>
+$("button").on("click", function() {
+  var $button = $(this);
+  var oldValue = $button.parent().find("input").val();
+
+
+  if ($button.text() == "+") {
+	  var newVal = parseFloat(oldValue) + 1;
+  }
+  else {
+   // Don't allow decrementing below zero
+    if (oldValue > 0) {
+      var newVal = parseFloat(oldValue) - 1;
+    } else {
+      newVal = 0;
+    }
+  }
+
+  $button.parent().find("input").val(newVal);
+
+  /* Calculate Total Price */
+  var 삼겹 = $("#삼겹 span").text();
+  var 목살 = $("#목살 span").text();
+  var 삼겹개수 = $("#삼겹 input").val();
+  var 목살개수 = $("#목살 input").val();
+  var totalPrice = 삼겹 * 삼겹개수 + 목살 * 목살개수;
+  $("#total").text(totalPrice);
+
+});
+
+</script>
 </body>
 </html>
