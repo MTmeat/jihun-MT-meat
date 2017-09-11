@@ -21,4 +21,10 @@ def new_orderer(request):
         if orderer_form.is_valid():
             orderer_form.save()
 
-    return redirect('/')
+    return redirect('/payment')
+
+
+def payment(request):
+    if request.method == 'GET':
+        return render(request, 'payment.html')
+
