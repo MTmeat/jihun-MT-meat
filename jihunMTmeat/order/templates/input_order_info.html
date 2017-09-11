@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>지훈이네 MT 고기</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    {% load bootstrap3 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {{ form.media }}
 </head>
 <body>
-    <form>
-        이름 <input type="text"> <br/>
-        email <input type="email"> <br/>
-        전화번호 <input type="text"> <br/>
-        비밀번호 <input type="password"> <br/>
-        비밀번호 확인 <input type="password"> <br/>
-        <input type="submit" value="결제하기">
+    <form method="POST" action="/orders/new">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">결제하기</button>
     </form>
 </body>
 </html>
