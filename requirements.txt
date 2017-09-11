@@ -1,4 +1,6 @@
 Django==1.11.5
+django-bootstrap3==9.0.0
+django-datetime-widget==0.9.3
 py==1.4.34
 pytest==3.2.2
 pytest-django==3.1.2
