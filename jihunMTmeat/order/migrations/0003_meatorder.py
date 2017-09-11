@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
             name='MeatOrder',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('price', models.IntegerField()),
+                ('count', models.IntegerField()),
                 ('meat_price', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='order.MeatPrice')),
                 ('orderer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='order.Orderer')),
             ],

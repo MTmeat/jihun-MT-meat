@@ -19,10 +19,16 @@ class Orderer(models.Model):
     phone_number = models.CharField(max_length=11, validators=[phone_regex])
     password = models.CharField(default='', null=False, max_length=254)
     eating_date = models.DateTimeField()
-    deposit_status = models.CharField(max_length=1, choices=DEPOSIT_CHOICES, default='W')
+    deposit_status = models.CharField(max_length=1, choices=DEPOSIT_CHOICES)
     is_delivery = models.BooleanField(default=False)
 
 
 class MeatPrice(models.Model):
     name = models.CharField(default='', null=False, max_length=254, primary_key=True)
     price = models.IntegerField()
+
+
+class MeatOrder(models.Model):
+    orderer = models.ForeignKey('Orderer')
+    meat_price = models.ForeignKey('MeatPrice')
+    count = models.IntegerField()
