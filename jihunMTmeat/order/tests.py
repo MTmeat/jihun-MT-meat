@@ -28,7 +28,7 @@ def test_save_orderer_information(client):
         'is_delivery': False,
     }
 
-    client.post('/orders/new', orderer_data)
+    client.post('/orders/new/', orderer_data)
 
     orderer = Orderer.objects.get(name='최지훈')
 
