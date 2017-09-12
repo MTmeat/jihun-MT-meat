@@ -15,12 +15,12 @@
     {{ form.media }}
 </head>
 <body>
-    <form method="POST" action="/orders/new">
+    <form method="post" action="/orders/new/">
         {% csrf_token %}
         {% for key, value in meat_order_list.items %}
-        {{key}} :  <input type="number" name="{{key}}" value="{{value}}"><br>
+            {{key}} :  <input type="number" name="{{key}}" value="{{value}}"><br/>
         {% endfor %}
-        <br>
+        <br/>
         {{ form.as_p }}
         <button type="submit">결제하기</button>
     </form>

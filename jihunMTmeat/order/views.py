@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST, require_GET
+from django.urls import reverse
 
 from order.models import MeatPrice, Orderer, MeatOrder
 from order.forms import OrdererForm
@@ -23,7 +24,7 @@ def new_order(request):
             for meatInfo in MeatPrice.objects.all():
                 meatOrder = MeatOrder(orderer=orderer, meat_price=meatInfo, count=request.POST[meatInfo.name])
                 meatOrder.save()
-    return redirect('/orders/payment')
+            return redirect(reverse('order:view_order', args=[orderer.id]))
 
   
 def ordermeat(request):
@@ -31,7 +32,7 @@ def ordermeat(request):
     for meatInfo in MeatPrice.objects.all():
         meat_order_list[meatInfo.name] = request.POST[meatInfo.name]
     orderer_form = OrdererForm()
-    return render(request, 'input_order_info.html', {'form': orderer_form, 'meat_order_list':meat_order_list})
+    return render(request, 'input_order_info.html', {'form': orderer_form, 'meat_order_list': meat_order_list})
 
 
 @require_GET

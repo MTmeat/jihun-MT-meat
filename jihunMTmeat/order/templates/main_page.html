@@ -61,7 +61,7 @@
       </div>
     </header>
 
-    <form method="post" action="/ordermeat">
+    <form method="post" action="/ordermeats/new/">
       {% csrf_token %}
       {% for meat_info in meat_price_list %}
       <div id="{{ meat_info.name }}">
