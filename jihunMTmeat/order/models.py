@@ -5,7 +5,7 @@ from django.core.validators import RegexValidator
 
 class Orderer(models.Model):
     def __str__(self):
-        return 'Orderer Name: ' + self.name
+        return self.name
 
     phone_regex = RegexValidator(regex='^\d{11}$', message='Phone length has to be 11 & Only number')
 
@@ -24,11 +24,17 @@ class Orderer(models.Model):
 
 
 class MeatPrice(models.Model):
+    def __str__(self):
+        return self.name
+
     name = models.CharField(default='', null=False, max_length=254, primary_key=True)
     price = models.IntegerField()
 
 
 class MeatOrder(models.Model):
+    def __str__(self):
+        return self.orderer.name
+
     orderer = models.ForeignKey('Orderer')
     meat_price = models.ForeignKey('MeatPrice')
     count = models.IntegerField()
