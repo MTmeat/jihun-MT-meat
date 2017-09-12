@@ -33,7 +33,7 @@ class MeatPrice(models.Model):
 
 class MeatOrder(models.Model):
     def __str__(self):
-        return self.orderer.name
+        return self.orderer.name + ' ' + self.meat_price.name + ' ' + str(self.count) + ' ' + str(self.orderer.eating_date)
 
     orderer = models.ForeignKey('Orderer')
     meat_price = models.ForeignKey('MeatPrice')
