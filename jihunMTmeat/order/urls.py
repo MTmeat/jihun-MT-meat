@@ -8,5 +8,5 @@ urlpatterns = [
     url(r'^ordermeats/new/$', views.ordermeat, name='ordermeat'),
     url(r'^orderers/new/$', views.input_order_info, name='input_order_info'),
     url(r'^orders/new/$', views.new_order, name='new_order'),
-    url(r'^orders/payment/$', views.payment, name='payment'),
+    url(r'^orders/(?P<orderer_id>\d+)/$', views.view_order, name='view_order'),
 ]
