@@ -10,10 +10,12 @@
     {{ form.media }}
 </head>
 <body>
-    삼겹살 {{ 삼겹살 }}
-    목살 {{ 목살 }}
     <form method="POST" action="/orders/new">
         {% csrf_token %}
+        {% for key, value in meat_order_list.items %}
+        {{key}} :  <input type="number" name="{{key}}" value="{{value}}"><br>
+        {% endfor %}
+        <br>
         {{ form.as_p }}
         <button type="submit">결제하기</button>
     </form>
