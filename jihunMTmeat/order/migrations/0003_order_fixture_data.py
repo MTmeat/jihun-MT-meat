@@ -1,7 +1,6 @@
 from __future__ import unicode_literals
 from django.db import migrations, models
-
-import datetime
+from django.utils import timezone
 
 
 def forwards_func(apps, schema_editor):
@@ -17,7 +16,7 @@ def forwards_func(apps, schema_editor):
         email='nesoy@gmail.com',
         phone_number='01037370424',
         password='dudwo1234!',
-        eating_date=datetime.datetime.now(),
+        eating_date=timezone.now(),
         deposit_status='W',
         is_delivery=False,
     )
