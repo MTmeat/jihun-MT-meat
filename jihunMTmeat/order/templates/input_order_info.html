@@ -10,6 +10,8 @@
     {{ form.media }}
 </head>
 <body>
+    삼겹살 {{ 삼겹살 }}
+    목살 {{ 목살 }}
     <form method="POST" action="/orders/new">
         {% csrf_token %}
         {{ form.as_p }}
