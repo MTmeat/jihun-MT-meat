@@ -18,11 +18,11 @@ def new_orderer(request):
     if request.method == 'POST':
         orderer_form = OrdererForm(request.POST)
         if orderer_form.is_valid():
-            orderer_object = orderer_form.save()
+            orderer = orderer_form.save()
             for meatInfo in MeatPrice.objects.all():
-                meatOrder = MeatOrder(orderer=orderer_object, meat_price=meatInfo, count=request.POST[meatInfo.name])
+                meatOrder = MeatOrder(orderer=orderer, meat_price=meatInfo, count=request.POST[meatInfo.name])
                 meatOrder.save()
-    return redirect('/payment')
+    return redirect('/orders/payment')
 
   
 def ordermeat(request):
