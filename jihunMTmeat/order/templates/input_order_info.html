@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>지훈이네 MT 고기</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    {% load bootstrap3 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
+
+    {% load static %}
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/popper/popper.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+
     {{ form.media }}
 </head>
 <body>
@@ -19,5 +24,6 @@
         {{ form.as_p }}
         <button type="submit">결제하기</button>
     </form>
+
 </body>
 </html>
