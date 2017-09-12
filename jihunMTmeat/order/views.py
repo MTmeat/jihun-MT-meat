@@ -15,12 +15,12 @@ def input_order_info(request):
     return render(request, 'input_order_info.html', {'form': orderer_form})
 
 
-def new_orderer(request):
+def new_order(request):
     if request.method == 'POST':
         orderer_form = OrdererForm(request.POST)
         if orderer_form.is_valid():
             orderer_form.save()
-    return redirect('/payment')
+    return redirect('/orders/payment')
 
   
 def ordermeat(request):
