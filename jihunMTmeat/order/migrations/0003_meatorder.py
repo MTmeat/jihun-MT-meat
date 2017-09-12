@@ -9,7 +9,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('order', '0002_meatprice_fixture_data'),
+        ('order', '0002_meatprice'),
     ]
 
     operations = [
@@ -23,3 +23,4 @@ class Migration(migrations.Migration):
             ],
         ),
     ]
+
