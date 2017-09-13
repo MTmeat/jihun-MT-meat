@@ -5,8 +5,8 @@ from . import views
 app_name = 'order'
 urlpatterns = [
     url(r'^$', views.main_page, name='main_page'),
-    url(r'^ordermeats/new/$', views.ordermeat, name='ordermeat'),
-    url(r'^orderers/new/$', views.input_order_info, name='input_order_info'),
+    url(r'^ordermeats/new/$', views.new_ordermeat, name='new_ordermeat'),
+    url(r'^orderers/new/$', views.new_order, name='new_orderer'),
     url(r'^orders/new/$', views.new_order, name='new_order'),
     url(r'^orders/(?P<orderer_id>\d+)/$', views.view_order, name='view_order'),
 ]
