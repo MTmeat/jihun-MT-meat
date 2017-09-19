@@ -59,21 +59,29 @@
           <span class="skills">Hansung Univ</span>
         </div>
       </div>
+
+
+      <form method="post" action="/ordermeats/new/">
+        {% csrf_token %}
+        {% for meat_info in meat_price_list %}
+        <div id="{{ meat_info.name }}">
+          <div class="btn btn-lg btn-outline">{{ meat_info.name }}</div>
+          <span class="btn btn-lg btn-outline">{{ meat_info.price }}</span>
+          <input type="number" class="btn btn-lg btn-outline" name="{{ meat_info.name }}" value="0">
+          <button type="button" class="btn btn-lg btn-outline">+</button>
+          <button type="button" class="btn btn-lg btn-outline">-</button>
+        </div>
+        {% endfor %}
+        <div class="btn btn-lg btn-outline">
+          합계 $<span id="total">0</span>
+        </div>
+        <br/>
+        <input type="submit" class="btn btn-lg btn-outline" value="주문하기">
+      </form>
+
     </header>
 
-    <form method="post" action="/ordermeats/new/">
-      {% csrf_token %}
-      {% for meat_info in meat_price_list %}
-      <div id="{{ meat_info.name }}">
-        {{ meat_info.name }} <span>{{ meat_info.price }}</span>
-        <input type="number" name="{{ meat_info.name }}" value="0">
-        <button type="button">+</button>
-        <button type="button">-</button>
-      </div>
-      {% endfor %}
-      <input type="submit" value="주문하기">
-    </form>
-    <div>합계 <span id="total">0</span></div>
+
 
 
 
