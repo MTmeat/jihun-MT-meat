@@ -14,13 +14,13 @@ class Orderer(models.Model):
         ('C', 'Complete'),
     )
 
-    name = models.CharField(default='', null=False, max_length=254)
-    email = models.EmailField(null=False, max_length=254)
-    phone_number = models.CharField(max_length=11, validators=[phone_regex])
-    password = models.CharField(default='', null=False, max_length=254)
-    eating_date = models.DateTimeField()
+    name = models.CharField(default='', null=False, max_length=254, blank=False)
+    email = models.EmailField(null=False, max_length=254, blank=False)
+    phone_number = models.CharField(max_length=11, validators=[phone_regex], blank=False)
+    password = models.CharField(default='', null=False, max_length=254, blank=False)
+    eating_date = models.DateTimeField(blank=False)
     deposit_status = models.CharField(max_length=1, choices=DEPOSIT_CHOICES)
-    is_delivery = models.BooleanField(default=False)
+    is_delivery = models.BooleanField(default=False, blank=False)
 
 
 class MeatPrice(models.Model):
