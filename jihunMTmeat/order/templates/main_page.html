@@ -25,7 +25,7 @@
         <div id="{{ meat_info.name }}" class="form-group">
           <div class="btn btn-md btn-outline">{{ meat_info.name }}</div>
           <span class="btn btn-md btn-outline">{{ meat_info.price }}</span>
-          <input type="number" class="btn btn-md btn-outline" name="{{ meat_info.name }}" value="0">
+          <input type="number" onchange="calculateTotalPrice()" class="btn btn-md btn-outline" name="{{ meat_info.name }}" value="0">
           <button type="button" class="btn btn-md btn-outline">+</button>
           <button type="button" class="btn btn-md btn-outline">-</button>
         </div>
@@ -62,13 +62,16 @@
             $button.parent().find("input").val(newVal);
 
             /* Calculate Total Price */
-            var 삼겹가격 = $("#삼겹 span").text();
-            var 목살가격 = $("#목살 span").text();
-            var 삼겹개수 = $("#삼겹 input").val();
-            var 목살개수 = $("#목살 input").val();
-            var totalPrice = 삼겹가격 * 삼겹개수 + 목살가격 * 목살개수;
-            $("#total").text(totalPrice);
+            calculateTotalPrice();
           });
+          function calculateTotalPrice(){
+              var 삼겹가격 = $("#삼겹 span").text();
+              var 목살가격 = $("#목살 span").text();
+              var 삼겹개수 = $("#삼겹 input").val();
+              var 목살개수 = $("#목살 input").val();
+              var totalPrice = 삼겹가격 * 삼겹개수 + 목살가격 * 목살개수;
+              $("#total").text(totalPrice);
+          }
     </script>
   </body>
 
