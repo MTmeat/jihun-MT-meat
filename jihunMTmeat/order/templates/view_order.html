@@ -1,27 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>지훈이네 MT고기</title>
+    <head>
+    <title>Jihun's MT Meat</title>
+    {% include 'head.html' %}
+    {% load static %}
+  </head>
 </head>
 <body>
-    <h3>주문자 정보</h3>
-    {{ orderer.name }} <br/>
-    {{ orderer.email }} <br/>
-    {{ orderer.phone_number }} <br/>
 
-    <hr/>
+    {% include 'nav_bar.html' %}
+    <!-- About Section -->
+    <section class="success" id="about">
+        <br>
+      <div class="container">
+        <h2 class="text-center">주문 정보</h2>
+        <hr class="star-light">
+        <div class="row">
+          <div class="col-lg-4 ml-auto">
+              <h3>주문자 정보</h3>
+              {{ orderer.name }} <br/>
+              {{ orderer.email }} <br/>
+              {{ orderer.phone_number }} <br/><br/>
+          </div>
+          <div class="col-lg-4 mx-auto">
+              <h3>주문 내역</h3>
+              {% for meat_order in meat_order_list %}
+                  {{ meat_order.meat_price.name }} {{ meat_order.count }}근 <br/>
+              {% endfor %}<br/>
+          </div>
+            <div class="col-lg-4 mr-auto">
+            <h3>입금 정보</h3>
+            우리은행 <br/>
+            1002-750-309142 <br/>
+            최지훈 <br/>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <h3>주문 내역</h3>
-    {% for meat_order in meat_order_list %}
-        {{ meat_order.meat_price.name }} {{ meat_order.count }}근 <br/>
-    {% endfor %}
-
-    <hr/>
-
-    <h3>입금 정보</h3>
-    우리은행 <br/>
-    1002-750-309142 <br/>
-    최지훈 <br/>
+    {% include 'footer.html' %}
 </body>
 </html>
