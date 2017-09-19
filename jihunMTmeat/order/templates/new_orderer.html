@@ -1,29 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>지훈이네 MT 고기</title>
-
-    {% load static %}
-    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-    <script src="{% static 'vendor/popper/popper.min.js' %}"></script>
-    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+    {% include 'head.html' %}
 
     {{ form.media }}
 </head>
-<body>
-    <form method="post" action="/orders/new/">
-        {% csrf_token %}
-        {% for key, value in meat_order_list.items %}
-            {{key}} :  <input type="number" name="{{key}}" value="{{value}}"><br/>
-        {% endfor %}
-        <br/>
-        {{ form.as_p }}
-        <button type="submit">결제하기</button>
-    </form>
 
+<body id="page-top">
+{% include 'nav_bar.html' %}
+
+<!-- Contact Section -->
+<section id="contact">
+    <br/>
+    <br/>
+    <div class="container">
+        <h2 class="text-center">주문자 정보 입력</h2>
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
+                <form method="post" action="/orders/new/" novalidate>
+                    {% csrf_token %}
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls">
+                            <label>이름</label>
+                            {{ form.name.errors }}
+                            {{ form.name }}
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls">
+                            <label>Email</label>
+                            {{ form.email.errors }}
+                            {{ form.email }}
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls">
+                            <label>연락처</label>
+                            {{ form.phone_number.errors }}
+                            {{ form.phone_number }}
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls">
+                            <label>비밀번호</label>
+                            {{ form.password.errors }}
+                            {{ form.password }}
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls">
+                            <label>고기 수령 날짜</label>
+                            {{ form.eating_date.errors }}
+                            {{ form.eating_date }}
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {% for radio in form.is_delivery %}
+                        {{ radio }}
+                        {% endfor %}
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-lg">완료</button>
+                    </div>
+
+                    {% for key, value in meat_order_list.items %}
+                    {{key}} :  <input type="number" name="{{key}}" value="{{value}}"><br/>
+                    {% endfor %}
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<br/>
 </body>
 </html>
