@@ -41,8 +41,11 @@ def new_order(request):
 @require_GET
 def view_order(request, orderer_id):
     orderer = Orderer.objects.get(id=orderer_id)
+    if orderer.deposit_status == 'W':
+        deposit_status = '대기'
+
     meat_order_list = MeatOrder.objects.filter(orderer=orderer)
 
-    return render(request, 'view_order.html', {'orderer': orderer, 'meat_order_list': meat_order_list})
+    return render(request, 'view_order.html', {'orderer': orderer, 'meat_order_list': meat_order_list, 'deposit_status': deposit_status})
 
 
