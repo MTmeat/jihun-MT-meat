@@ -28,7 +28,7 @@ class OrdererForm(forms.ModelForm):
                 'id': 'password',
                 'class': 'form-control',
                 'placeholder': '비밀번호',
-                'data-validation-required-message': '연락처를 입력해주세요.'}),
+                'data-validation-required-message': '비밀번호를 입력해주세요.'}),
             'eating_date': DateTimeWidget(usel10n=True, bootstrap_version=3, attrs={
                 'id': 'eating_date',
                 'class': 'form-control',
