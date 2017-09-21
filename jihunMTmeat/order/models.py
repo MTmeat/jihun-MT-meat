@@ -19,7 +19,7 @@ class Orderer(models.Model):
     phone_number = models.CharField(max_length=11, validators=[phone_regex], blank=False)
     password = models.CharField(default='', null=False, max_length=254, blank=False)
     eating_date = models.DateTimeField(blank=False)
-    deposit_status = models.CharField(max_length=1, choices=DEPOSIT_CHOICES)
+    deposit_status = models.CharField(max_length=1, choices=DEPOSIT_CHOICES, default='W')
     is_delivery = models.BooleanField(default=False, blank=False)
 
 
