@@ -19,7 +19,7 @@ class OrdererForm(forms.ModelForm):
                 'class': 'form-control',
                 'placeholder': 'Email',
                 'data-validation-required-message': 'Email을 입력해주세요.'}),
-            'phone_number': forms.TextInput(attrs={
+            'phone_number': forms.NumberInput(attrs={
                 'id': 'phone_number',
                 'class': 'form-control',
                 'placeholder': '연락처',
