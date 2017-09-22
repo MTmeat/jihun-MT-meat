@@ -34,8 +34,4 @@ class OrdererForm(forms.ModelForm):
                 'class': 'form-control',
                 'placeholder': '고기 수령 날짜',
                 'data-validation-required-message': '날짜를 선택해주세요.'}),
-            'is_delivery': forms.RadioSelect(attrs={
-                'id': 'is_delivery',
-                'class': 'controls',
-            }, choices=(('True', '배달'), ('False', '방문수령')))
         }
