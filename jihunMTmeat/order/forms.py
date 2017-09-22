@@ -7,7 +7,7 @@ from order.models import Orderer
 class OrdererForm(forms.ModelForm):
     class Meta:
         model = Orderer
-        fields = ('name', 'email', 'phone_number', 'password', 'eating_date', 'is_delivery')
+        fields = ('name', 'email', 'phone_number', 'password', 'eating_date', 'is_delivery', 'delivery_location')
         widgets = {
             'name': forms.TextInput(attrs={
                 'id': 'name',
@@ -34,4 +34,9 @@ class OrdererForm(forms.ModelForm):
                 'class': 'form-control',
                 'placeholder': '고기 수령 날짜',
                 'data-validation-required-message': '날짜를 선택해주세요.'}),
+            'delivery_location': forms.TextInput(attrs={
+                'id': 'delivery_location',
+                'class': 'form-control',
+                'placeholder': '배달 장소',
+                'data-validation-required-message': '배달 장소를 입력해주세요.'}),
         }

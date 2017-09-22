@@ -19,6 +19,7 @@ class Orderer(models.Model):
     eating_date = models.DateTimeField(blank=False)
     deposit_status = models.CharField(max_length=1, choices=DEPOSIT_CHOICES, default='W')
     is_delivery = models.BooleanField(default=True, blank=False)
+    delivery_location = models.CharField(max_length=1024, blank=False)
 
 
 class MeatPrice(models.Model):

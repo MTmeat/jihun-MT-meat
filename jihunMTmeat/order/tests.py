@@ -26,6 +26,9 @@ def test_save_orderer_information(client):
         'eating_date': datetime.datetime.now(),
         'deposit_status': 'W',
         'is_delivery': False,
+        'delivery_location': '한성대',
+        '삼겹': 3,
+        '목살': 2
     }
 
     client.post('/orders/new/', orderer_data)

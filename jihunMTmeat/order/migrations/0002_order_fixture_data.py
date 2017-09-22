@@ -19,6 +19,7 @@ def forwards_func(apps, schema_editor):
         eating_date=timezone.now(),
         deposit_status='W',
         is_delivery=False,
+        delivery_location='한성대학교'
     )
 
     MeatOrder.objects.create(
@@ -36,6 +37,7 @@ def forwards_func(apps, schema_editor):
 
 def reverse_func(apps, schema_editor):
     MeatPrice = apps.get_model("order", "MeatPrice")
+    Orderer = apps.get_model("order", "Orderer")
     db_alias = schema_editor.connection.alias
 
     MeatPrice.objects.using(db_alias).filter(name="삼겹", price=7800).delete()
@@ -48,7 +50,7 @@ def reverse_func(apps, schema_editor):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('order', '0003_meatorder'),
+        ('order', '0001_initial'),
     ]
 
     operations = [
