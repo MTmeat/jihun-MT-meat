@@ -12,6 +12,11 @@ def main_page(request):
     return render(request, 'main_page.html', {'meat_price_list': meat_price_list})
 
 
+@require_GET
+def redirect_main_page(request):
+    return redirect('/')
+
+
 @require_POST
 def new_ordermeat(request):
     meat_order_list = {}
