@@ -1,9 +1,13 @@
 from django.contrib import admin
 
-from order.models import Orderer, MeatPrice, MeatOrder
+from order.models import Orderer, Order, MeatPrice, MeatOrder
 
 
 class OrdererAdmin(admin.ModelAdmin):
+    pass
+
+
+class OrderAdmin(admin.ModelAdmin):
     pass
 
 
@@ -16,5 +20,6 @@ class MeatOrderAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Orderer)
+admin.site.register(Order)
 admin.site.register(MeatPrice)
 admin.site.register(MeatOrder)

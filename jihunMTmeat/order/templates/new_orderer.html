@@ -14,7 +14,7 @@
     <br/>
     <br/>
     <div class="container">
-        <h2 class="text-center">주문자 정보 입력</h2>
+        <h2 class="text-center">주문 정보 입력</h2>
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
@@ -24,32 +24,32 @@
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls">
                             <label>이름</label>
-                            {{ form.name.errors }}
-                            {{ form.name }}
+                            {{ orderer_form.name.errors }}
+                            {{ orderer_form.name }}
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls">
                             <label>Email</label>
-                            {{ form.email.errors }}
-                            {{ form.email }}
+                            {{ orderer_form.email.errors }}
+                            {{ orderer_form.email }}
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls">
                             <label>연락처</label>
-                            {{ form.phone_number.errors }}
-                            {{ form.phone_number }}
+                            {{ orderer_form.phone_number.errors }}
+                            {{ orderer_form.phone_number }}
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls">
                             <label>비밀번호</label>
-                            {{ form.password.errors }}
-                            {{ form.password }}
+                            {{ orderer_form.password.errors }}
+                            {{ orderer_form.password }}
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
@@ -65,16 +65,16 @@
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls">
                             <label>고기 수령 날짜</label>
-                            {{ form.eating_date.errors }}
-                            {{ form.eating_date }}
+                            {{ order_form.eating_date.errors }}
+                            {{ order_form.eating_date }}
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls">
                             <label>배달 장소</label>
-                            {{ form.delivery_location.errors }}
-                            {{ form.delivery_location }}
+                            {{ order_form.delivery_location.errors }}
+                            {{ order_form.delivery_location }}
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
