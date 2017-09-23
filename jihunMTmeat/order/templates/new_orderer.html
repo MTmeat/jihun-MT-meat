@@ -70,6 +70,14 @@
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
+                    <div class="control-group">
+                        <div class="form-group floating-label-form-group controls">
+                            <label>배달 장소</label>
+                            {{ form.delivery_location.errors }}
+                            {{ form.delivery_location }}
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
                     <br>
                     <div class="form-group">
                         <button id="sendOrderButton" type="submit" class="btn btn-success btn-lg">완료</button>
