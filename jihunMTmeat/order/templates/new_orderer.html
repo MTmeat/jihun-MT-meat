@@ -3,6 +3,10 @@
 <head>
     {% include 'head.html' %}
 
+    {% load static %}
+    <script src="{% static 'css/datetimepicker.css' %}"></script>
+    <script src="{% static 'js/bootstrap-datetimepicker.js' %}"></script>
+
     {{ form.media }}
 </head>
 
