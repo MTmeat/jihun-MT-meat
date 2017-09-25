@@ -59,9 +59,14 @@ def notify_deposit_complete(instance, **kwargs):
     if instance.id:  # if update
         pre_order = Order.objects.get(id=instance.id)
         if pre_order.order_status == 'DW' and instance.order_status == 'DC':
+            date = instance.eating_date
+            message = '입금이 완료되었습니다. 감사합니다.\n주문하신 고기는 \n'
+            message += str(date.year) + '년 ' + str(date.month) + '월 ' + str(date.day) + '일 \n'
+            message += instance.delivery_location + '으로 배달됩니다.'
+
             send_mail(
-                '입금 완료',
                 '입금이 완료되었습니다.',
+                message,
                 'jihunmtmeat@gmail.com',
                 [instance.orderer.email],
                 fail_silently=False,
