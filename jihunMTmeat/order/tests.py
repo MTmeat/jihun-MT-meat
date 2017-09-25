@@ -55,3 +55,28 @@ def test_show_order_information(client):
     # meatorder info
     for meat_order in meat_order_list:
         assert meat_order.meat_price.name + ' ' + str(meat_order.count) + '근' in response.content.decode('utf-8')
+
+
+@pytest.mark.django_db
+def test_success_login_form(client):
+    client_data = {
+        'name': '권영재',
+        'email': 'nesoy@gmail.com',
+        'password': 'dudwo1234!',
+    }
+    response = client.post('/orderers/login/',client_data)
+
+    # Login info
+    assert response.url== '/orders/1/'
+
+@pytest.mark.django_db
+def test_fail_login_form(client):
+    client_data = {
+        'name': '최지훈',
+        'email': 'nesoy@gmail.com',
+        'password': 'dudwo1234!',
+    }
+    response = client.post('/orderers/login/',client_data)
+
+    # Login info
+    assert response.url== '/'
