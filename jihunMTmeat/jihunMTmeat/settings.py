@@ -131,3 +131,6 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'jihunmtmeat@gmail.com'
 EMAIL_HOST_PASSWORD = 'jihunmt1234!'
 EMAIL_USE_TLS = True
+
+
+AUTH_USER_MODEL = 'order.Orderer'

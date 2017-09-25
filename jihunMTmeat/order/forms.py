@@ -7,10 +7,10 @@ from order.models import Orderer, Order
 class OrdererForm(forms.ModelForm):
     class Meta:
         model = Orderer
-        fields = ('name', 'email', 'phone_number', 'password')
+        fields = ('username', 'email', 'phone_number', 'password')
         widgets = {
-            'name': forms.TextInput(attrs={
-                'id': 'name',
+            'username': forms.TextInput(attrs={
+                'id': 'username',
                 'class': 'form-control',
                 'placeholder': '이름',
                 'data-validation-required-message': '이름을 입력해주세요.'}),
@@ -52,10 +52,10 @@ class OrderForm(forms.ModelForm):
 class LoginForm(forms.ModelForm):
     class Meta:
         model = Orderer
-        fields = ('name', 'email', 'password')
+        fields = ('username', 'email', 'password')
         widgets = {
-            'name': forms.TextInput(attrs={
-                'id': 'name',
+            'username': forms.TextInput(attrs={
+                'id': 'username',
                 'class': 'form-control',
                 'placeholder': '이름',
                 'data-validation-required-message': '이름을 입력해주세요.'}),
