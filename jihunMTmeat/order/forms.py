@@ -1,13 +1,13 @@
 from django import forms
 from datetimewidget.widgets import DateTimeWidget
 
-from order.models import Orderer
+from order.models import Orderer, Order
 
 
 class OrdererForm(forms.ModelForm):
     class Meta:
         model = Orderer
-        fields = ('name', 'email', 'phone_number', 'password', 'eating_date', 'is_delivery', 'delivery_location')
+        fields = ('name', 'email', 'phone_number', 'password')
         widgets = {
             'name': forms.TextInput(attrs={
                 'id': 'name',
@@ -29,6 +29,14 @@ class OrdererForm(forms.ModelForm):
                 'class': 'form-control',
                 'placeholder': '비밀번호',
                 'data-validation-required-message': '비밀번호를 입력해주세요.'}),
+        }
+
+
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ('eating_date', 'delivery_location')
+        widgets = {
             'eating_date': DateTimeWidget(usel10n=True, bootstrap_version=3, attrs={
                 'id': 'eating_date',
                 'class': 'form-control',

@@ -128,6 +128,6 @@ STATICFILES_DIRS = [
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'team.nelp@gmail.com'
-EMAIL_HOST_PASSWORD = 'csedbadmin'
+EMAIL_HOST_USER = 'jihunmtmeat@gmail.com'
+EMAIL_HOST_PASSWORD = 'jihunmt1234!'
 EMAIL_USE_TLS = True
