@@ -2,7 +2,7 @@ import pytest
 import datetime
 
 
-from order.models import MeatPrice, Orderer, MeatOrder
+from order.models import MeatPrice, Orderer, MeatOrder, Order
 
 
 @pytest.mark.django_db
@@ -42,10 +42,10 @@ def test_save_orderer_information(client):
 @pytest.mark.django_db
 def test_show_order_information(client):
     orderer = Orderer.objects.get(name='권영재')
-    meat_order_list = MeatOrder.objects.filter(orderer=orderer)
+    order = Order.objects.get(orderer=orderer)
+    meat_order_list = MeatOrder.objects.filter(order=order)
 
     response = client.get('/orders/%d/' % orderer.id)
-
 
     # orderer info
     assert orderer.name in response.content.decode('utf-8')
