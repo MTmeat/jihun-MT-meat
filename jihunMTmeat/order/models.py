@@ -18,14 +18,15 @@ class Order(models.Model):
     def __str__(self):
         return self.orderer.name + ' ' + self.delivery_location + ' ' + str(self.eating_date)
 
-    DEPOSIT_CHOICES = (
-        ('W', 'Waiting'),
-        ('C', 'Complete'),
+    ORDER_CHOICES = (
+        ('DW', 'Deposit Waiting'),
+        ('DC', 'Deposit Complete'),
+        ('DF', 'Delivery Finish')
     )
 
     orderer = models.ForeignKey('Orderer')
     eating_date = models.DateTimeField(blank=False)
-    deposit_status = models.CharField(max_length=1, choices=DEPOSIT_CHOICES, default='W')
+    order_status = models.CharField(max_length=2, choices=ORDER_CHOICES, default='DW')
     is_delivery = models.BooleanField(default=True, blank=False)
     delivery_location = models.CharField(max_length=1024, blank=False)
 
@@ -34,7 +35,7 @@ class Order(models.Model):
 def notify_deposit_complete(instance, **kwargs):
     if instance.id:  # if update
         pre_order = Order.objects.get(id=instance.id)
-        if pre_order.deposit_status == 'W' and instance.deposit_status == 'C':
+        if pre_order.order_status == 'DW' and instance.order_status == 'DC':
             send_mail(
                 '입금 완료',
                 '입금이 완료되었습니다.',
