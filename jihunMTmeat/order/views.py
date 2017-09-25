@@ -50,6 +50,8 @@ def new_order(request):
         for meatInfo in MeatPrice.objects.all():
             meat_order = MeatOrder(order=order, meat_price=meatInfo, count=request.POST[meatInfo.name])
             meat_order.save()
+
+        order.send_order_email()
         return redirect(reverse('order:view_order', args=[orderer.id]))
 
 

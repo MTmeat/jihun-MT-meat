@@ -30,6 +30,29 @@ class Order(models.Model):
     is_delivery = models.BooleanField(default=True, blank=False)
     delivery_location = models.CharField(max_length=1024, blank=False)
 
+    def send_order_email(self):
+        message = ''
+        for meat_order in MeatOrder.objects.filter(order=self):
+            message += meat_order.meat_price.name + ' ' + str(meat_order.count) + '근 = ' + str(meat_order.meat_price.price * meat_order.count) + '\n'
+
+        message += '총액 = ' + str(self.get_amount()) + '\n\n'
+
+        message += '입금 계좌.\n 우리 은행\n 최지훈\n 1002-750-309142\n'
+        send_mail(
+            '주문이 완료되었습니다.',
+            message,
+            'jihunmtmeat@gmail.com',
+            [self.orderer.email],
+            fail_silently=False,
+        )
+
+    def get_amount(self):
+        amount = 0
+        for meat_order in MeatOrder.objects.filter(order=self):
+            amount += meat_order.meat_price.price * meat_order.count
+
+        return amount
+
 
 @receiver(pre_save, sender=Order)
 def notify_deposit_complete(instance, **kwargs):
@@ -39,7 +62,7 @@ def notify_deposit_complete(instance, **kwargs):
             send_mail(
                 '입금 완료',
                 '입금이 완료되었습니다.',
-                'team.nelp@gmail.com',
+                'jihunmtmeat@gmail.com',
                 [instance.orderer.email],
                 fail_silently=False,
             )
