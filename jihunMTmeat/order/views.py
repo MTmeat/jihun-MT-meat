@@ -57,12 +57,12 @@ def new_order(request):
 def view_order(request, orderer_id):
     orderer = Orderer.objects.get(id=orderer_id)
     order = Order.objects.get(orderer=orderer)
-    if order.deposit_status == 'W':
-        deposit_status = '대기'
+    if order.order_status == 'DW':
+        order_status = '입금 대기'
 
     meat_order_list = MeatOrder.objects.filter(order=order)
 
-    return render(request, 'view_order.html', {'orderer': orderer, 'meat_order_list': meat_order_list, 'deposit_status': deposit_status})
+    return render(request, 'view_order.html', {'orderer': orderer, 'meat_order_list': meat_order_list, 'deposit_status': order_status})
 
 
 def login_order(request):

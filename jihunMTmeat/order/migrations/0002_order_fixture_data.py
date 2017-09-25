@@ -22,7 +22,7 @@ def forwards_func(apps, schema_editor):
     order = Order.objects.create(
         orderer=orderer,
         eating_date=timezone.now(),
-        deposit_status='W',
+        order_status='DW',
         delivery_location='한성대학교'
     )
 
