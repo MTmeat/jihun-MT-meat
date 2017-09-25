@@ -57,7 +57,7 @@ def view_order(request, orderer_id):
     if order.deposit_status == 'W':
         deposit_status = '대기'
 
-    meat_order_list = MeatOrder.objects.filter(orderer=orderer)
+    meat_order_list = MeatOrder.objects.filter(order=order)
 
     return render(request, 'view_order.html', {'orderer': orderer, 'meat_order_list': meat_order_list, 'deposit_status': deposit_status})
 
