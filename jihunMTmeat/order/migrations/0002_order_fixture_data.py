@@ -19,7 +19,7 @@ def forwards_func(apps, schema_editor):
         password='dudwo1234!',
     )
 
-    order = Order.objects.create(
+    order1 = Order.objects.create(
         orderer=orderer,
         eating_date=timezone.now(),
         order_status='DW',
@@ -27,15 +27,34 @@ def forwards_func(apps, schema_editor):
     )
 
     MeatOrder.objects.create(
-        order=order,
+        order=order1,
         meat_price=meat_price1,
         count=2,
     )
 
     MeatOrder.objects.create(
-        order=order,
+        order=order1,
         meat_price=meat_price2,
         count=3,
+    )
+
+    order2 = Order.objects.create(
+        orderer=orderer,
+        eating_date=timezone.now(),
+        order_status='DW',
+        delivery_location='영재대학교'
+    )
+
+    MeatOrder.objects.create(
+        order=order2,
+        meat_price=meat_price1,
+        count=12,
+    )
+
+    MeatOrder.objects.create(
+        order=order2,
+        meat_price=meat_price2,
+        count=32,
     )
 
 

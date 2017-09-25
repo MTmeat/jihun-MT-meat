@@ -58,13 +58,11 @@ def new_order(request):
 @require_GET
 def view_order(request, orderer_id):
     orderer = Orderer.objects.get(id=orderer_id)
-    order = Order.objects.get(orderer=orderer)
-    if order.order_status == 'DW':
-        order_status = '입금 대기'
+    orders = Order.objects.filter(orderer=orderer)
+    for order in orders:
+        order.meat_orders = MeatOrder.objects.filter(order=order)
 
-    meat_order_list = MeatOrder.objects.filter(order=order)
-
-    return render(request, 'view_order.html', {'orderer': orderer, 'order': order, 'meat_order_list': meat_order_list, 'deposit_status': order_status})
+    return render(request, 'view_order.html', {'orderer': orderer, 'orders': orders})
 
 
 def login_order(request):
@@ -77,7 +75,7 @@ def login_order(request):
                 return redirect(reverse('order:view_order', args=[orderer.id]))
             except ObjectDoesNotExist:
                 login_form = LoginForm()
-                return render(request, 'login.html', {'form': login_form, 'status':False})
+                return render(request, 'login.html', {'form': login_form, 'status': False})
 
     else:
         login_form = LoginForm()

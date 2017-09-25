@@ -17,32 +17,30 @@
         <h2 class="text-center">주문 정보</h2>
         <hr class="star-light">
         <div class="row">
-            <div class="col-lg-4 ml-auto">
+            <div class="col-lg-6 ml-auto">
                 <h3>주문자 정보</h3>
                 {{ orderer.name }} <br/>
                 {{ orderer.email }} <br/>
                 {{ orderer.phone_number }} <br/><br/>
             </div>
-            <div class="col-lg-4 mx-auto">
-                <h3>주문 내역</h3>
-                {% for meat_order in meat_order_list %}
-                {{ meat_order.meat_price.name }} {{ meat_order.count }}근 <br/>
-                {% endfor %}<br/>
-
-                {{ order.eating_date }} <br/>
-                {{ order.delivery_location }} <br/>
-                합계 : {{ order.get_amount }} <br/>
-            </div>
-            <div class="col-lg-4 mr-auto">
+            <div class="col-lg-6 mr-auto">
                 <h3>입금 정보</h3>
                 우리은행 <br/>
                 1002-750-309142 <br/>
                 최지훈 <br/>
-
                 <br/>
-                <h3>입금 상태</h3>
-                {{ deposit_status }}
-
+            </div>
+            <div class="col-lg-12 mx-auto">
+                <h3>주문 내역</h3>
+                {% for order in orders %}
+                    {{ order.eating_date }} <br/>
+                    {{ order.delivery_location }} <br/>
+                    {% for meat_order in order.meat_orders %}
+                        {{ meat_order.meat_price.name }} {{ meat_order.count }}근 <br/>
+                    {% endfor %}
+                    합계 : {{ order.get_amount }} <br/>
+                    {{ order.get_order_status_display }} <br/><br/>
+                {% endfor %}
             </div>
         </div>
     </div>

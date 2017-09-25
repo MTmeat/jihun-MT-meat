@@ -19,9 +19,9 @@ class Order(models.Model):
         return self.orderer.name + ' ' + self.delivery_location + ' ' + str(self.eating_date)
 
     ORDER_CHOICES = (
-        ('DW', 'Deposit Waiting'),
-        ('DC', 'Deposit Complete'),
-        ('DF', 'Delivery Finish')
+        ('DW', '입금 대기'),
+        ('DC', '입금 완료'),
+        ('DF', '배송 완료')
     )
 
     orderer = models.ForeignKey('Orderer')
