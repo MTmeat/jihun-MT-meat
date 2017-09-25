@@ -40,3 +40,25 @@ class OrdererForm(forms.ModelForm):
                 'placeholder': '배달 장소',
                 'data-validation-required-message': '배달 장소를 입력해주세요.'}),
         }
+
+class LoginForm(forms.ModelForm):
+    class Meta:
+        model = Orderer
+        fields = ('name', 'email', 'password')
+        widgets = {
+            'name': forms.TextInput(attrs={
+                'id': 'name',
+                'class': 'form-control',
+                'placeholder': '이름',
+                'data-validation-required-message': '이름을 입력해주세요.'}),
+            'email': forms.EmailInput(attrs={
+                'id': 'email',
+                'class': 'form-control',
+                'placeholder': 'Email',
+                'data-validation-required-message': 'Email을 입력해주세요.'}),
+            'password': forms.PasswordInput(attrs={
+                'id': 'password',
+                'class': 'form-control',
+                'placeholder': '비밀번호',
+                'data-validation-required-message': '비밀번호를 입력해주세요.'}),
+        }

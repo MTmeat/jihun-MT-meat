@@ -3,8 +3,9 @@ from django.views.decorators.http import require_POST, require_GET
 from django.urls import reverse
 
 from order.models import MeatPrice, Orderer, MeatOrder
-from order.forms import OrdererForm
+from order.forms import OrdererForm, LoginForm
 
+from django.core.exceptions import ObjectDoesNotExist
 
 @require_GET
 def main_page(request):
@@ -52,5 +53,20 @@ def view_order(request, orderer_id):
     meat_order_list = MeatOrder.objects.filter(orderer=orderer)
 
     return render(request, 'view_order.html', {'orderer': orderer, 'meat_order_list': meat_order_list, 'deposit_status': deposit_status})
+
+
+def login_order(request):
+    if request.method == 'POST':
+        login_form = LoginForm(request.POST)
+        if login_form.is_valid():
+            login = login_form.save(commit=False)
+            try:
+                orderer = Orderer.objects.get(name=login.name, email=login.email, password=login.password)
+            except ObjectDoesNotExist:
+                return redirect('/')
+            return redirect(reverse('order:view_order', args=[orderer.id]))
+    else:
+        login_form = LoginForm()
+        return render(request, 'login.html', {'form': login_form});
 
 
