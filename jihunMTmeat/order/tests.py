@@ -58,7 +58,7 @@ def test_show_order_information(client):
 
 
 @pytest.mark.django_db
-def test_login_form(client):
+def test_success_login_form(client):
     client_data = {
         'name': '권영재',
         'email': 'nesoy@gmail.com',
@@ -70,7 +70,7 @@ def test_login_form(client):
     assert response.url== '/orders/1/'
 
 @pytest.mark.django_db
-def test_login_form(client):
+def test_fail_login_form(client):
     client_data = {
         'name': '최지훈',
         'email': 'nesoy@gmail.com',
