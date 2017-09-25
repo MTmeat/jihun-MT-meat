@@ -48,8 +48,8 @@ def new_order(request):
         order.save()
 
         for meatInfo in MeatPrice.objects.all():
-            meatOrder = MeatOrder(order=order, meat_price=meatInfo, count=request.POST[meatInfo.name])
-            meatOrder.save()
+            meat_order = MeatOrder(order=order, meat_price=meatInfo, count=request.POST[meatInfo.name])
+            meat_order.save()
         return redirect(reverse('order:view_order', args=[orderer.id]))
 
 
