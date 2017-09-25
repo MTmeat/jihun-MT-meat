@@ -1,4 +1,7 @@
 from django.db import models
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
+from django.core.mail import send_mail
 
 
 class Orderer(models.Model):
@@ -25,6 +28,20 @@ class Order(models.Model):
     deposit_status = models.CharField(max_length=1, choices=DEPOSIT_CHOICES, default='W')
     is_delivery = models.BooleanField(default=True, blank=False)
     delivery_location = models.CharField(max_length=1024, blank=False)
+
+
+@receiver(pre_save, sender=Order)
+def notify_deposit_complete(instance, **kwargs):
+    if instance.id:  # if update
+        pre_order = Order.objects.get(id=instance.id)
+        if pre_order.deposit_status == 'W' and instance.deposit_status == 'C':
+            send_mail(
+                '입금 완료',
+                '입금이 완료되었습니다.',
+                'team.nelp@gmail.com',
+                [instance.orderer.email],
+                fail_silently=False,
+            )
 
 
 class MeatPrice(models.Model):
