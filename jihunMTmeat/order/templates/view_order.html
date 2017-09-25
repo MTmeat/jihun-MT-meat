@@ -28,6 +28,10 @@
                 {% for meat_order in meat_order_list %}
                 {{ meat_order.meat_price.name }} {{ meat_order.count }}근 <br/>
                 {% endfor %}<br/>
+
+                {{ order.eating_date }} <br/>
+                {{ order.delivery_location }} <br/>
+                합계 : {{ order.get_amount }} <br/>
             </div>
             <div class="col-lg-4 mr-auto">
                 <h3>입금 정보</h3>
