@@ -64,7 +64,7 @@ def view_order(request, orderer_id):
 
     meat_order_list = MeatOrder.objects.filter(order=order)
 
-    return render(request, 'view_order.html', {'orderer': orderer, 'meat_order_list': meat_order_list, 'deposit_status': order_status})
+    return render(request, 'view_order.html', {'orderer': orderer, 'order': order, 'meat_order_list': meat_order_list, 'deposit_status': order_status})
 
 
 def login_order(request):
