@@ -74,11 +74,13 @@ def login_order(request):
             login = login_form.save(commit=False)
             try:
                 orderer = Orderer.objects.get(name=login.name, email=login.email, password=login.password)
+                return redirect(reverse('order:view_order', args=[orderer.id]))
             except ObjectDoesNotExist:
-                return redirect('/')
-            return redirect(reverse('order:view_order', args=[orderer.id]))
+                login_form = LoginForm()
+                return render(request, 'login.html', {'form': login_form, 'status':False})
+
     else:
         login_form = LoginForm()
-        return render(request, 'login.html', {'form': login_form});
+        return render(request, 'login.html', {'form': login_form})
 
 

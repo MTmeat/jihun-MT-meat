@@ -16,6 +16,11 @@
     <br/>
     <div class="container">
         <h2 class="text-center">주문자 정보 입력</h2>
+        {% if status == False %}
+            <p class="text-center text-danger">
+                입력하신 정보와 일치하는 정보가 없습니다.
+            </p>
+        {% endif %}
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->

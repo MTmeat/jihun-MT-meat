@@ -70,6 +70,7 @@ def test_success_login_form(client):
     assert response.url == '/orders/1/'
 
 
+
 @pytest.mark.django_db
 def test_fail_login_form(client):
     client_data = {
@@ -80,4 +81,5 @@ def test_fail_login_form(client):
     response = client.post('/orderers/login/', client_data)
 
     # Login info
-    assert response.url == '/'
+    assert '입력하신 정보와 일치하는 정보가 없습니다.' in response.content.decode('utf-8')
+
