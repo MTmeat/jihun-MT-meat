@@ -42,7 +42,7 @@ class Order(models.Model):
             '주문이 완료되었습니다.',
             message,
             'jihunmtmeat@gmail.com',
-            [self.orderer.email],
+            [self.orderer.email, 'cjh5414@gmail.com', 'kyoje11@gmail.com'],
             fail_silently=False,
         )
 
