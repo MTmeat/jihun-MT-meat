@@ -19,7 +19,7 @@ def test_show_meat_price_from_database(client):
 @pytest.mark.django_db
 def test_save_orderer_information(client):
     orderer_data = {
-        'name': '최지훈',
+        'username': '최지훈',
         'email': 'cjh5414@gmail.com',
         'phone_number': '01098995514',
         'password': 'wlgns1234!',
@@ -33,7 +33,7 @@ def test_save_orderer_information(client):
 
     client.post('/orders/new/', orderer_data)
 
-    orderer = Orderer.objects.get(name='최지훈')
+    orderer = Orderer.objects.get(username='최지훈')
 
     assert orderer.email == orderer_data['email']
     assert orderer.phone_number == orderer_data['phone_number']
@@ -41,14 +41,14 @@ def test_save_orderer_information(client):
 
 @pytest.mark.django_db
 def test_show_order_information(client):
-    orderer = Orderer.objects.get(name='권영재')
+    orderer = Orderer.objects.get(username='권영재')
     order = Order.objects.get(orderer=orderer)
     meat_order_list = MeatOrder.objects.filter(order=order)
 
     response = client.get('/orders/%d/' % orderer.id)
 
     # orderer info
-    assert orderer.name in response.content.decode('utf-8')
+    assert orderer.username in response.content.decode('utf-8')
     assert orderer.email in response.content.decode('utf-8')
     assert orderer.phone_number in response.content.decode('utf-8')
 
@@ -60,7 +60,7 @@ def test_show_order_information(client):
 @pytest.mark.django_db
 def test_success_login_form(client):
     client_data = {
-        'name': '권영재',
+        'username': '권영재',
         'email': 'nesoy@gmail.com',
         'password': 'dudwo1234!',
     }
@@ -74,7 +74,7 @@ def test_success_login_form(client):
 @pytest.mark.django_db
 def test_fail_login_form(client):
     client_data = {
-        'name': '최지훈',
+        'username': '최지훈',
         'email': 'nesoy@gmail.com',
         'password': 'dudwo1234!',
     }
