@@ -3,20 +3,17 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.core.mail import send_mail
 
+from django.contrib.auth.models import AbstractUser
 
-class Orderer(models.Model):
+
+class Orderer(AbstractUser):
     def __str__(self):
-        return self.name
-
-    name = models.CharField(default='', null=False, max_length=254, blank=False)
-    email = models.EmailField(null=False, max_length=254, blank=False)
+        return self.username
     phone_number = models.CharField(max_length=13, blank=False)
-    password = models.CharField(default='', null=False, max_length=254, blank=False)
-
 
 class Order(models.Model):
     def __str__(self):
-        return self.orderer.name + ' ' + self.delivery_location + ' ' + str(self.eating_date)
+        return self.orderer.username + ' ' + self.delivery_location + ' ' + str(self.eating_date)
 
     ORDER_CHOICES = (
         ('DW', '입금 대기'),
@@ -83,7 +80,7 @@ class MeatPrice(models.Model):
 
 class MeatOrder(models.Model):
     def __str__(self):
-        return self.order.orderer.name + ' ' + self.meat_price.name + ' ' + str(self.count) + ' ' + str(self.order.eating_date)
+        return self.order.orderer.username + ' ' + self.meat_price.name + ' ' + str(self.count) + ' ' + str(self.order.eating_date)
 
     order = models.ForeignKey('Order')
     meat_price = models.ForeignKey('MeatPrice')

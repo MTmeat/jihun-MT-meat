@@ -13,7 +13,7 @@ def forwards_func(apps, schema_editor):
     meat_price2 = MeatPrice.objects.create(name="목살", price=6000)
 
     orderer = Orderer.objects.create(
-        name='권영재',
+        username='권영재',
         email='nesoy@gmail.com',
         phone_number='01037370424',
         password='dudwo1234!',
@@ -66,7 +66,7 @@ def reverse_func(apps, schema_editor):
     MeatPrice.objects.using(db_alias).filter(name="삼겹", price=7800).delete()
     MeatPrice.objects.using(db_alias).filter(name="목살", price=6000).delete()
 
-    Orderer.objects.using(db_alias).filter(name='권영재', email='nesoy@gmail.com').delete()
+    Orderer.objects.using(db_alias).filter(username='권영재', email='nesoy@gmail.com').delete()
 
     # need to delete MeatOrder
 
