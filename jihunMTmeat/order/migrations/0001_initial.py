@@ -65,7 +65,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('eating_date', models.DateTimeField()),
-                ('order_status', models.CharField(choices=[('DW', 'Deposit Waiting'), ('DC', 'Deposit Complete'), ('DF', 'Delivery Finish')], default='DW', max_length=2)),
+                ('order_status', models.CharField(choices=[('DW', '입금 대기'), ('DC', '입금 완료'), ('DF', '배송 완료')], default='DW', max_length=2)),
                 ('is_delivery', models.BooleanField(default=True)),
                 ('delivery_location', models.CharField(max_length=1024)),
                 ('orderer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
