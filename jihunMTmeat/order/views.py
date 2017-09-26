@@ -58,7 +58,7 @@ def new_order(request):
 @require_GET
 def view_order(request, orderer_id):
     orderer = Orderer.objects.get(id=orderer_id)
-    orders = Order.objects.filter(orderer=orderer)
+    orders = Order.objects.filter(orderer=orderer).order_by('-eating_date')
     for order in orders:
         order.meat_orders = MeatOrder.objects.filter(order=order)
 

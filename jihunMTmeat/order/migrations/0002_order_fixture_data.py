@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 from django.db import migrations, models
 from django.utils import timezone
+import datetime
 
 
 def forwards_func(apps, schema_editor):
@@ -40,7 +41,7 @@ def forwards_func(apps, schema_editor):
 
     order2 = Order.objects.create(
         orderer=orderer,
-        eating_date=timezone.now(),
+        eating_date=datetime.datetime(2000, 3, 1, 10, 0),
         order_status='DW',
         delivery_location='영재대학교'
     )
