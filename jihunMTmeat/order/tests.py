@@ -1,6 +1,8 @@
 import pytest
 import datetime
 
+from django.urls import reverse
+
 
 from order.models import MeatPrice, Orderer, MeatOrder, Order
 
@@ -42,10 +44,10 @@ def test_save_orderer_information(client):
 @pytest.mark.django_db
 def test_show_order_information(client):
     orderer = Orderer.objects.get(username='권영재')
-    order = Order.objects.get(orderer=orderer)
+    order = Order.objects.filter(orderer=orderer)[0]
     meat_order_list = MeatOrder.objects.filter(order=order)
 
-    response = client.get('/orders/%d/' % orderer.id)
+    response = client.get(reverse('order:view_order', args=[orderer.id]))
 
     # orderer info
     assert orderer.username in response.content.decode('utf-8')
@@ -71,7 +73,6 @@ def test_success_login_form(client):
     assert response.url == '/'
 
 
-
 @pytest.mark.django_db
 def test_fail_login_form(client):
     client_data = {
@@ -82,4 +83,15 @@ def test_fail_login_form(client):
 
     # Login info
     assert '입력하신 정보와 일치하는 정보가 없습니다.' in response.content.decode('utf-8')
+
+
+@pytest.mark.django_db
+def test_show_multi_order(client):
+    orderer = Orderer.objects.get(id=1)
+    response = client.get(reverse('order:view_order', args=[orderer.id]))
+
+    orders = Order.objects.filter(orderer=orderer)
+    for order in orders:
+        assert order.delivery_location in response.content.decode('utf-8')
+        assert str(order.get_amount()) in response.content.decode('utf-8')
 
