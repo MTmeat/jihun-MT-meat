@@ -60,14 +60,15 @@ def test_show_order_information(client):
 @pytest.mark.django_db
 def test_success_login_form(client):
     client_data = {
-        'username': '권영재',
-        'email': 'nesoy@gmail.com',
-        'password': 'dudwo1234!',
+        'username' : '권영재',
+        'password' : 'dudwo1234!',
     }
+
+
     response = client.post('/orderers/login/', client_data)
 
     # Login info
-    assert response.url == '/orders/1/'
+    assert response.url == '/'
 
 
 
@@ -75,7 +76,6 @@ def test_success_login_form(client):
 def test_fail_login_form(client):
     client_data = {
         'username': '최지훈',
-        'email': 'nesoy@gmail.com',
         'password': 'dudwo1234!',
     }
     response = client.post('/orderers/login/', client_data)
