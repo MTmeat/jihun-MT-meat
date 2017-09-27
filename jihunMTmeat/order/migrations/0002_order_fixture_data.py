@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 from django.db import migrations, models
 from django.utils import timezone
+from django.contrib.auth.hashers import make_password
 import datetime
 
 
@@ -10,6 +11,13 @@ def forwards_func(apps, schema_editor):
     MeatPrice = apps.get_model("order", "MeatPrice")
     Order = apps.get_model("order", "Order")
 
+    password = make_password('admin1234!')
+
+    admin = Orderer.objects.create(username='admin', password=password, email='admin@gmail.com')
+    admin.is_staff = True
+    admin.is_superuser = True
+    admin.save()
+
     meat_price1 = MeatPrice.objects.create(name="삼겹", price=7800)
     meat_price2 = MeatPrice.objects.create(name="목살", price=6000)
 
@@ -17,7 +25,7 @@ def forwards_func(apps, schema_editor):
         username='권영재',
         email='nesoy@gmail.com',
         phone_number='01037370424',
-        password='dudwo1234!',
+        password=make_password('dudwo1234!'),
     )
 
     order1 = Order.objects.create(

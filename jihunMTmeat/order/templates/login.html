@@ -15,7 +15,7 @@
     <br/>
     <br/>
     <div class="container">
-        <h2 class="text-center">주문자 정보 입력</h2>
+        <h2 class="text-center">로그인 정보 입력</h2>
         {% if status == False %}
             <p class="text-center text-danger">
                 입력하신 정보와 일치하는 정보가 없습니다.
@@ -30,24 +30,24 @@
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls">
                             <label>이름</label>
-                            {{ form.username.errors }}
-                            {{ form.username }}
+                            {{ login_form.username.errors }}
+                            {{ login_form.username }}
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls">
                             <label>Email</label>
-                            {{ form.email.errors }}
-                            {{ form.email }}
+                            {{ login_form.email.errors }}
+                            {{ login_form.email }}
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls">
                             <label>비밀번호</label>
-                            {{ form.password.errors }}
-                            {{ form.password }}
+                            {{ login_form.password.errors }}
+                            {{ login_form.password }}
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>

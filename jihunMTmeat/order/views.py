@@ -2,12 +2,12 @@ from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST, require_GET
 from django.urls import reverse
 
+from django.contrib.auth import authenticate, login
+
 
 from order.models import MeatPrice, Orderer, Order, MeatOrder
 from order.forms import OrdererForm, OrderForm, LoginForm
 
-
-from django.core.exceptions import ObjectDoesNotExist
 
 @require_GET
 def main_page(request):
@@ -67,18 +67,15 @@ def view_order(request, orderer_id):
 
 def login_order(request):
     if request.method == 'POST':
-        login_form = LoginForm(request.POST)
-        if login_form.is_valid():
-            login = login_form.save(commit=False)
-            print(login)
-            try:
-                orderer = Orderer.objects.get(username=login.username, email=login.email, password=login.password)
-                return redirect(reverse('order:view_order', args=[orderer.id]))
-            except ObjectDoesNotExist:
-                login_form = LoginForm()
-                return render(request, 'login.html', {'form': login_form, 'status': False})
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('/')
+        else:
+            login_form = LoginForm()
+            return render(request, 'login.html', {'login_form': login_form, 'status':False})
     else:
         login_form = LoginForm()
-        return render(request, 'login.html', {'form': login_form})
-
-
+        return render(request, 'login.html', {'login_form': login_form})
