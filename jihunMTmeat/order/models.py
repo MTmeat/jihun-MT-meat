@@ -4,12 +4,20 @@ from django.dispatch import receiver
 from django.core.mail import send_mail
 
 from django.contrib.auth.models import AbstractUser
-
+from django.contrib.auth.hashers import make_password
 
 class Orderer(AbstractUser):
     def __str__(self):
         return self.username
     phone_number = models.CharField(max_length=13, blank=False)
+
+
+@receiver(pre_save, sender=Orderer)
+def password_hashing(instance, **kwargs):
+    if not instance.id:  # if first create
+        instance.password = make_password(instance.password)
+
+
 
 class Order(models.Model):
     def __str__(self):
