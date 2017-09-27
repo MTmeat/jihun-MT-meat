@@ -95,3 +95,10 @@ def test_show_multi_order(client):
         assert order.delivery_location in response.content.decode('utf-8')
         assert str(order.get_amount()) in response.content.decode('utf-8')
 
+
+@pytest.mark.django_db
+def test_sort_order_with_time_in_order_page(client):
+
+    # Todo: if order status is DF then show to gray. recent order is upper
+
+    assert True

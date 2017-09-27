@@ -2,6 +2,8 @@ from __future__ import unicode_literals
 from django.db import migrations, models
 from django.utils import timezone
 from django.contrib.auth.hashers import make_password
+import datetime
+
 
 def forwards_func(apps, schema_editor):
     MeatOrder = apps.get_model("order", "MeatOrder")
@@ -47,7 +49,7 @@ def forwards_func(apps, schema_editor):
 
     order2 = Order.objects.create(
         orderer=orderer,
-        eating_date=timezone.now(),
+        eating_date=datetime.datetime(2000, 3, 1, 10, 0),
         order_status='DW',
         delivery_location='영재대학교'
     )
