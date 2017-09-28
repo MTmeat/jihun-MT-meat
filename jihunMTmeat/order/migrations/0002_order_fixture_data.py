@@ -18,8 +18,8 @@ def forwards_func(apps, schema_editor):
     admin.is_superuser = True
     admin.save()
 
-    meat_price1 = MeatPrice.objects.create(name="삼겹", price=7800)
-    meat_price2 = MeatPrice.objects.create(name="목살", price=6000)
+    meat_price1 = MeatPrice.objects.create(name="삼겹", price=7800, origin="국산")
+    meat_price2 = MeatPrice.objects.create(name="목살", price=6000, origin="칠레")
 
     orderer = Orderer.objects.create(
         username='권영재',
@@ -72,8 +72,8 @@ def reverse_func(apps, schema_editor):
     Orderer = apps.get_model("order", "Orderer")
     db_alias = schema_editor.connection.alias
 
-    MeatPrice.objects.using(db_alias).filter(name="삼겹", price=7800).delete()
-    MeatPrice.objects.using(db_alias).filter(name="목살", price=6000).delete()
+    MeatPrice.objects.using(db_alias).filter(name="삼겹", price=7800, origin="국산").delete()
+    MeatPrice.objects.using(db_alias).filter(name="목살", price=6000, origin="칠레").delete()
 
     Orderer.objects.using(db_alias).filter(username='권영재', email='nesoy@gmail.com').delete()
 
