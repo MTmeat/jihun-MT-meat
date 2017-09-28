@@ -43,7 +43,10 @@ def test_save_orderer_information(client):
 
 @pytest.mark.django_db
 def test_show_order_information(client):
-    orderer = Orderer.objects.get(username='권영재')
+    # login User
+    user = login_test_user(client)
+
+    orderer = Orderer.objects.get(username=user['username'])
     order = Order.objects.filter(orderer=orderer)[0]
     meat_order_list = MeatOrder.objects.filter(order=order)
 
@@ -70,7 +73,8 @@ def test_success_login_form(client):
     response = client.post('/orderers/login/', client_data)
 
     # Login info
-    assert response.url == '/'
+    assert response.url == '/orderers/2/orders/'
+
 
 
 @pytest.mark.django_db
@@ -102,3 +106,12 @@ def test_sort_order_with_time_in_order_page(client):
     # Todo: if order status is DF then show to gray. recent order is upper
 
     assert True
+
+
+def login_test_user(client):
+    client_data = {
+        'username': '권영재',
+        'password': 'dudwo1234!',
+    }
+    client.post('/orderers/login/', client_data)
+    return client_data

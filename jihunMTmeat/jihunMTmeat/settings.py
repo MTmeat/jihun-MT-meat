@@ -134,3 +134,6 @@ EMAIL_USE_TLS = True
 
 
 AUTH_USER_MODEL = 'order.Orderer'
+
+LOGIN_URL = '/orderers/login/'
+LOGIN_REDIRECT_URL = '/orderers/login/'

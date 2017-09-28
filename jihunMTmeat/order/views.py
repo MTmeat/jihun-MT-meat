@@ -3,7 +3,7 @@ from django.views.decorators.http import require_POST, require_GET
 from django.urls import reverse
 
 from django.contrib.auth import authenticate, login
-
+from django.contrib.auth.decorators import login_required
 
 from order.models import MeatPrice, Orderer, Order, MeatOrder
 from order.forms import OrdererForm, OrderForm, LoginForm
@@ -55,7 +55,7 @@ def new_order(request):
         return redirect(reverse('order:view_order', args=[orderer.id]))
 
 
-@require_GET
+@login_required
 def view_order(request, orderer_id):
     orderer = Orderer.objects.get(id=orderer_id)
     orders = Order.objects.filter(orderer=orderer).order_by('-eating_date')
@@ -72,7 +72,7 @@ def login_order(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('/')
+            return redirect('/orderers/'+str(user.id)+'/orders/')
         else:
             login_form = LoginForm()
             return render(request, 'login.html', {'login_form': login_form, 'status':False})
