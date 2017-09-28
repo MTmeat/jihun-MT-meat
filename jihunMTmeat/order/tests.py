@@ -108,7 +108,6 @@ def test_sort_order_with_time_in_order_page(client):
     assert True
 
 
-
 def login_test_user(client):
     client_data = {
         'username': '권영재',
@@ -119,6 +118,8 @@ def login_test_user(client):
 
 @pytest.mark.django_db
 def test_dont_save_orderer_if_have_ordered_before(client):
+    before_orderers_count = Orderer.objects.count()
+
     orderer = Orderer.objects.get(username='권영재')
     orders = Order.objects.filter(orderer=orderer)
     assert len(orders) == 2
@@ -139,7 +140,7 @@ def test_dont_save_orderer_if_have_ordered_before(client):
     assert len(Orderer.objects.filter(username='권영재')) == 1
 
     orderer = Orderer.objects.get(username='권영재')
-    orders = Order.objects.filter(orderer=orderer)
-    assert len(orders) == 3
-
+    orderers = Order.objects.filter(orderer=orderer)
+    assert len(orderers) == 3
+    assert before_orderers_count == Orderer.objects.count()
 
