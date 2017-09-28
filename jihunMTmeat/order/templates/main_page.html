@@ -24,6 +24,7 @@
         {% for meat_info in meat_price_list %}
         <div id="{{ meat_info.name }}" class="form-group">
           <div class="btn btn-md btn-outline">{{ meat_info.name }}</div>
+            <div class="btn btn-md btn-outline">{{ meat_info.origin }}</div>
           <span class="btn btn-md btn-outline">{{ meat_info.price }}</span>
           <input type="number" onchange="calculateTotalPrice()" class="btn btn-md btn-outline" name="{{ meat_info.name }}" value="0">
           <button type="button" class="btn btn-md btn-outline">+</button>
