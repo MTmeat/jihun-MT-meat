@@ -40,9 +40,22 @@ def new_orderer(request):
 def new_order(request):
     orderer_form = OrdererForm(request.POST)
     order_form = OrderForm(request.POST)
-    if orderer_form.is_valid() and order_form.is_valid():
+
+    orderer_form_valid = orderer_form.is_valid(request)
+    if orderer_form_valid is False:
+        return redirect(reverse('order:main_page'))
+
+    elif orderer_form_valid is True:
         orderer = orderer_form.save()
 
+    elif orderer_form_valid is 'EXIST':
+        orderer = Orderer.objects.get(
+                    username=request.POST['username'],
+                    email=request.POST['email'],
+                    phone_number=request.POST['phone_number'],
+                )
+
+    if order_form.is_valid():
         order = order_form.save(commit=False)
         order.orderer = orderer
         order.save()

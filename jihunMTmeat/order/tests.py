@@ -108,6 +108,7 @@ def test_sort_order_with_time_in_order_page(client):
     assert True
 
 
+
 def login_test_user(client):
     client_data = {
         'username': '권영재',
@@ -115,3 +116,30 @@ def login_test_user(client):
     }
     client.post('/orderers/login/', client_data)
     return client_data
+
+@pytest.mark.django_db
+def test_dont_save_orderer_if_have_ordered_before(client):
+    orderer = Orderer.objects.get(username='권영재')
+    orders = Order.objects.filter(orderer=orderer)
+    assert len(orders) == 2
+
+    orderer_data = {
+        'username': '권영재',
+        'email': 'nesoy@gmail.com',
+        'phone_number': '01037370424',
+        'password': 'dudwo1234!',
+        'eating_date': datetime.datetime.now(),
+        'delivery_location': '한성대학교 정문',
+        '삼겹': 22,
+        '목살': 33
+    }
+
+    client.post('/orders/new/', orderer_data)
+
+    assert len(Orderer.objects.filter(username='권영재')) == 1
+
+    orderer = Orderer.objects.get(username='권영재')
+    orders = Order.objects.filter(orderer=orderer)
+    assert len(orders) == 3
+
+
