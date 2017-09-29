@@ -95,3 +95,18 @@ class LoginForm(forms.ModelForm):
                 'placeholder': '비밀번호',
                 'data-validation-required-message': '비밀번호를 입력해주세요.'}),
         }
+    def auth(self,request):
+        try:
+
+            orderer = Orderer.objects.get(
+                username=request.POST.get('username'),
+                email=request.POST.get('email'),
+            )
+
+            user = authenticate(username=orderer.username, password=request.POST.get('password'))
+            if user is not None: # login success
+                return user
+            else: # login fail
+                return None
+        except ObjectDoesNotExist: # Not matching user Info
+            return None
