@@ -14,11 +14,8 @@ class Orderer(AbstractUser):
 
 @receiver(pre_save, sender=Orderer)
 def password_hashing(instance, **kwargs):
-    if not instance.id:  # if first create
+    if not is_password_usable(instance.password): # if password change
         instance.password = make_password(instance.password)
-    else:
-        if not is_password_usable(instance.password): # if password change
-            instance.password = make_password(instance.password)
 
 
 class Order(models.Model):
