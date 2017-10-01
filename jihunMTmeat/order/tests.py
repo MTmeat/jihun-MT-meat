@@ -55,7 +55,7 @@ def test_show_order_information(client):
     # login User
     user = login_test_user(client)
 
-    orderer = Orderer.objects.get(username=user['username'])
+    orderer = Orderer.objects.get(name=user['name'], email=user['email'])
     order = Order.objects.filter(orderer=orderer)[0]
     meat_order_list = MeatOrder.objects.filter(order=order)
 
@@ -74,9 +74,9 @@ def test_show_order_information(client):
 @pytest.mark.django_db
 def test_success_login_form(client):
     client_data = {
-        'name' : '권영재',
-        'email' : 'nesoy@gmail.com',
-        'password' : 'dudwo1234!',
+        'name': '권영재',
+        'email': 'nesoy@gmail.com',
+        'password': 'dudwo1234!',
     }
 
     response = client.post('/orderers/login/', client_data)

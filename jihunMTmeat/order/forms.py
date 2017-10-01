@@ -56,10 +56,10 @@ class OrderForm(forms.ModelForm):
 class LoginForm(forms.ModelForm):
     class Meta:
         model = Orderer
-        fields = ('username', 'email', 'password')
+        fields = ('name', 'email', 'password')
         widgets = {
-            'username': forms.TextInput(attrs={
-                'id': 'username',
+            'name': forms.TextInput(attrs={
+                'id': 'name',
                 'class': 'form-control',
                 'placeholder': '이름',
                 'data-validation-required-message': '이름을 입력해주세요.'}),
@@ -78,14 +78,12 @@ class LoginForm(forms.ModelForm):
     def auth(self, request):
         try:
             orderer = Orderer.objects.get(
-                username=request.POST.get('username'),
+                name=request.POST.get('name'),
                 email=request.POST.get('email'),
             )
 
             user = authenticate(username=orderer.username, password=request.POST.get('password'))
-            if user is not None: # login success
-                return user
-            else: # login fail
-                return None
+            return user
+
         except ObjectDoesNotExist: # Not matching user Info
             return None

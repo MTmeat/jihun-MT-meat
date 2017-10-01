@@ -74,7 +74,6 @@ def view_order(request, orderer_id):
 
 def login_order(request):
     if request.method == 'POST':
-
         form = LoginForm(request.POST)
         user = form.auth(request)
 
@@ -83,7 +82,7 @@ def login_order(request):
             return redirect('/orderers/'+str(user.id)+'/orders/')
         else:
             login_form = LoginForm()
-            return render(request, 'login.html', {'login_form': login_form, 'status':False})
+            return render(request, 'login.html', {'login_form': login_form, 'status': False})
     else:
         login_form = LoginForm()
         return render(request, 'login.html', {'login_form': login_form})
