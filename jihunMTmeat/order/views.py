@@ -41,24 +41,18 @@ def new_order(request):
     orderer_form = OrdererForm(request.POST)
     order_form = OrderForm(request.POST)
 
-    orderer_form_valid = orderer_form.is_valid(request)
-    if orderer_form_valid is False:
-        return redirect(reverse('order:main_page'))
+    if orderer_form.is_valid():
+        orderer = orderer_form.save(commit=False)
+        if orderer.is_exist():
+            orderer = Orderer.objects.get(username=orderer.get_username())
+        else:
+            orderer.username = orderer.get_username()
+            orderer.save()
 
-    elif orderer_form_valid is True:
-        orderer = orderer_form.save()
-
-    elif orderer_form_valid is 'EXIST':
-        orderer = Orderer.objects.get(
-                    username=request.POST['username'],
-                    email=request.POST['email'],
-                    phone_number=request.POST['phone_number'],
-                )
-
-    if order_form.is_valid():
-        order = order_form.save(commit=False)
-        order.orderer = orderer
-        order.save()
+        if order_form.is_valid():
+            order = order_form.save(commit=False)
+            order.orderer = orderer
+            order.save()
 
         for meatInfo in MeatPrice.objects.all():
             meat_order = MeatOrder(order=order, meat_price=meatInfo, count=request.POST[meatInfo.name])
@@ -80,7 +74,6 @@ def view_order(request, orderer_id):
 
 def login_order(request):
     if request.method == 'POST':
-
         form = LoginForm(request.POST)
         user = form.auth(request)
 
@@ -89,7 +82,7 @@ def login_order(request):
             return redirect('/orderers/'+str(user.id)+'/orders/')
         else:
             login_form = LoginForm()
-            return render(request, 'login.html', {'login_form': login_form, 'status':False})
+            return render(request, 'login.html', {'login_form': login_form, 'status': False})
     else:
         login_form = LoginForm()
         return render(request, 'login.html', {'login_form': login_form})
