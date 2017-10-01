@@ -14,46 +14,46 @@
 <section id="contact">
     <br/>
     <br/>
-    <div class="container">
-        <h2 class="text-center">로그인 정보 입력</h2>
+    <div>
+        <h2>로그인 정보 입력</h2>
         {% if status == False %}
-            <p class="text-center text-danger">
+            <p>
                 입력하신 정보와 일치하는 정보가 없습니다.
             </p>
         {% endif %}
-        <div class="row">
-            <div class="col-lg-8 mx-auto">
+        <div>
+            <div>
                 <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
                 <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
                 <form id="orderForm" method="post" action="/orderers/login/" novalidate>
                     {% csrf_token %}
-                    <div class="control-group">
-                        <div class="form-group floating-label-form-group controls">
+                    <div>
+                        <div>
                             <label>이름</label>
                             {{ login_form.name.errors }}
                             {{ login_form.name }}
-                            <p class="help-block text-danger"></p>
+                            <p></p>
                         </div>
                     </div>
-                    <div class="control-group">
-                        <div class="form-group floating-label-form-group controls">
+                    <div>
+                        <div>
                             <label>Email</label>
                             {{ login_form.email.errors }}
                             {{ login_form.email }}
-                            <p class="help-block text-danger"></p>
+                            <p></p>
                         </div>
                     </div>
-                    <div class="control-group">
-                        <div class="form-group floating-label-form-group controls">
+                    <div>
+                        <div>
                             <label>비밀번호</label>
                             {{ login_form.password.errors }}
                             {{ login_form.password }}
-                            <p class="help-block text-danger"></p>
+                            <p></p>
                         </div>
                     </div>
                     <br>
-                    <div class="form-group">
-                        <button id="sendOrderButton" type="submit" class="btn btn-success btn-lg">완료</button>
+                    <div>
+                        <button id="sendOrderButton" type="submit">완료</button>
                     </div>
                 </form>
             </div>
