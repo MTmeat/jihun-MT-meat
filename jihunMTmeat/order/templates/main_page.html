@@ -9,33 +9,33 @@
   <body id="page-top">
     {% include 'nav_bar.html' %}
     <!-- Header -->
-    <header class="masthead">
-      <div class="container">
-        <img class="img-fluid" src="{% static 'img/meat.jpg' %}" alt="">
-        <div class="intro-text">
-          <span class="name">JIHUN'S MT MEAT</span>
-          <hr class="star-light">
-          <span class="skills">Hansung Univ</span>
+    <header>
+      <div>
+        <img src="{% static 'img/meat.jpg' %}" alt="">
+        <div>
+          <span>JIHUN'S MT MEAT</span>
+          <hr>
+          <span>Hansung Univ</span>
         </div>
       </div>
 
       <form method="post" action="/ordermeats/new/">
         {% csrf_token %}
         {% for meat_info in meat_price_list %}
-        <div id="{{ meat_info.name }}" class="form-group">
-          <div class="btn btn-md btn-outline">{{ meat_info.name }}</div>
-            <div class="btn btn-md btn-outline">{{ meat_info.origin }}</div>
-          <span class="btn btn-md btn-outline">{{ meat_info.price }}</span>
-          <input type="number" onchange="calculateTotalPrice()" class="btn btn-md btn-outline" name="{{ meat_info.name }}" value="0">
-          <button type="button" class="btn btn-md btn-outline">+</button>
-          <button type="button" class="btn btn-md btn-outline">-</button>
+        <div id="{{ meat_info.name }}">
+          <div>{{ meat_info.name }}</div>
+            <div>{{ meat_info.origin }}</div>
+          <span>{{ meat_info.price }}</span>
+          <input type="number" onchange="calculateTotalPrice()" name="{{ meat_info.name }}" value="0">
+          <button type="button">+</button>
+          <button type="button">-</button>
         </div>
         {% endfor %}
         <div class="btn btn-lg btn-outline">
           합계 $<span id="total">0</span>
         </div>
         <br/>
-        <input type="submit" class="btn btn-md btn-outline" value="주문하기">
+        <input type="submit" value="주문하기">
       </form>
 
     </header>
