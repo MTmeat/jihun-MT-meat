@@ -4,7 +4,7 @@ from django.dispatch import receiver
 from django.core.mail import send_mail
 
 from django.contrib.auth.models import AbstractUser
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import make_password, is_password_usable
 
 class Orderer(AbstractUser):
     def __str__(self):
@@ -16,7 +16,9 @@ class Orderer(AbstractUser):
 def password_hashing(instance, **kwargs):
     if not instance.id:  # if first create
         instance.password = make_password(instance.password)
-
+    else:
+        if not is_password_usable(instance.password): # if password change
+            instance.password = make_password(instance.password)
 
 
 class Order(models.Model):
