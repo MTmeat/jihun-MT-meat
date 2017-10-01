@@ -23,10 +23,12 @@ class Orderer(AbstractUser):
         try:
             orderer = Orderer.objects.get(
                 username=_username,
+                name=self.name,
+                email=self.email,
             )
 
             user = authenticate(username=_username, password=self.password)
-            if user is None:
+            if user is None:  # if password incorrect
                 orderer.password = make_password(self.password)
                 orderer.save()
 

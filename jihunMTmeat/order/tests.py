@@ -157,7 +157,49 @@ def test_save_new_orderer_if_only_one_field_is_different(client):
         '목살': 33
     }
 
+    orderer_data2 = {
+        'name': '최지훈',
+        'email': 'nesoy@gmail.com',
+        'phone_number': '01037370424',
+        'password': 'wlgns1234!',
+        'eating_date': datetime.datetime.now(),
+        'delivery_location': '한성대학교 후문',
+        '삼겹': 5,
+        '목살': 5
+    }
+
+    client.post('/orders/new/', orderer_data)
+    client.post('/orders/new/', orderer_data2)
+
+    assert Orderer.objects.count() == before_orderers_count + 2
+    assert len(Orderer.objects.filter(name='권영재')) == 2
+    assert len(Orderer.objects.filter(name='최지훈')) == 1
+
+
+@pytest.mark.django_db
+def test_update_password_if_only_password_is_different(client):
+    before_orderers_count = Orderer.objects.count()
+
+    orderer_data = {
+        'name': '권영재',
+        'email': 'nesoy@gmail.com',
+        'phone_number': '01037370424',
+        'password': 'dudwo1234!2!',
+        'eating_date': datetime.datetime.now(),
+        'delivery_location': '한성대학교 정문',
+        '삼겹': 22,
+        '목살': 33
+    }
+
     client.post('/orders/new/', orderer_data)
 
-    assert Orderer.objects.count() == before_orderers_count + 1
-    assert len(Orderer.objects.filter(name='권영재')) == 2
+    print(before_orderers_count)
+
+    response = client.post('/orderers/login/', {
+        'name': '권영재',
+        'email': 'nesoy@gmail.com',
+        'password': 'dudwo1234!2!'
+    })
+
+    orderer = Orderer.objects.get(username='권영재nesoy')
+    assert response.url == '/orderers/%d/orders/' % orderer.id
