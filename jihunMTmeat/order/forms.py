@@ -1,6 +1,4 @@
 from django import forms
-from django.core.exceptions import ObjectDoesNotExist
-from django.contrib.auth import authenticate
 
 from datetimewidget.widgets import DateTimeWidget
 
@@ -10,10 +8,10 @@ from order.models import Orderer, Order
 class OrdererForm(forms.ModelForm):
     class Meta:
         model = Orderer
-        fields = ('username', 'email', 'phone_number', 'password')
+        fields = ('name', 'email', 'phone_number', 'password')
         widgets = {
-            'username': forms.TextInput(attrs={
-                'id': 'username',
+            'name': forms.TextInput(attrs={
+                'id': 'name',
                 'class': 'form-control',
                 'placeholder': '이름',
                 'data-validation-required-message': '이름을 입력해주세요.'}),
@@ -33,27 +31,6 @@ class OrdererForm(forms.ModelForm):
                 'placeholder': '비밀번호',
                 'data-validation-required-message': '비밀번호를 입력해주세요.'}),
         }
-
-    def is_valid(self, request):
-        # run the parent validation first
-        valid = super(OrdererForm, self).is_valid()
-
-        if not valid:
-            try:
-                orderer = Orderer.objects.get(
-                    username=request.POST['username'],
-                    email=request.POST['email'],
-                    phone_number=request.POST['phone_number'],
-                )
-
-                user = authenticate(username=orderer.username, password=request.POST['password'])
-                if user is not None:
-                    return 'EXIST'
-
-            except ObjectDoesNotExist:
-                return False
-
-        return valid
 
 
 class OrderForm(forms.ModelForm):

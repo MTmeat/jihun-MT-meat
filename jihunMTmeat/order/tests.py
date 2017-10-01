@@ -3,8 +3,16 @@ import datetime
 
 from django.urls import reverse
 
-
 from order.models import MeatPrice, Orderer, MeatOrder, Order
+
+
+def login_test_user(client):
+    client_data = {
+        'username': '권영재nesoy',
+        'password': 'dudwo1234!',
+    }
+    client.post('/orderers/login/', client_data)
+    return client_data
 
 
 @pytest.mark.django_db
@@ -21,7 +29,7 @@ def test_show_meat_price_from_database(client):
 @pytest.mark.django_db
 def test_save_orderer_information(client):
     orderer_data = {
-        'username': '최지훈',
+        'name': '최지훈',
         'email': 'cjh5414@gmail.com',
         'phone_number': '01098995514',
         'password': 'wlgns1234!',
@@ -35,7 +43,7 @@ def test_save_orderer_information(client):
 
     client.post('/orders/new/', orderer_data)
 
-    orderer = Orderer.objects.get(username='최지훈')
+    orderer = Orderer.objects.get(username='최지훈'+'cjh5414')
 
     assert orderer.email == orderer_data['email']
     assert orderer.phone_number == orderer_data['phone_number']
@@ -65,10 +73,9 @@ def test_show_order_information(client):
 @pytest.mark.django_db
 def test_success_login_form(client):
     client_data = {
-        'username' : '권영재',
-        'password' : 'dudwo1234!',
+        'username': '권영재nesoy',
+        'password': 'dudwo1234!',
     }
-
 
     response = client.post('/orderers/login/', client_data)
 
@@ -76,11 +83,10 @@ def test_success_login_form(client):
     assert response.url == '/orderers/2/orders/'
 
 
-
 @pytest.mark.django_db
 def test_fail_login_form(client):
     client_data = {
-        'username': '최지훈',
+        'username': '최지훈nesoy',
         'password': 'dudwo1234!',
     }
     response = client.post('/orderers/login/', client_data)
@@ -108,24 +114,12 @@ def test_sort_order_with_time_in_order_page(client):
     assert True
 
 
-def login_test_user(client):
-    client_data = {
-        'username': '권영재',
-        'password': 'dudwo1234!',
-    }
-    client.post('/orderers/login/', client_data)
-    return client_data
-
 @pytest.mark.django_db
 def test_dont_save_orderer_if_have_ordered_before(client):
     before_orderers_count = Orderer.objects.count()
 
-    orderer = Orderer.objects.get(username='권영재')
-    orders = Order.objects.filter(orderer=orderer)
-    assert len(orders) == 2
-
     orderer_data = {
-        'username': '권영재',
+        'name': '권영재',
         'email': 'nesoy@gmail.com',
         'phone_number': '01037370424',
         'password': 'dudwo1234!',
@@ -137,10 +131,30 @@ def test_dont_save_orderer_if_have_ordered_before(client):
 
     client.post('/orders/new/', orderer_data)
 
-    assert len(Orderer.objects.filter(username='권영재')) == 1
+    assert len(Orderer.objects.filter(username='권영재nesoy')) == 1
 
-    orderer = Orderer.objects.get(username='권영재')
+    orderer = Orderer.objects.get(username='권영재nesoy')
     orderers = Order.objects.filter(orderer=orderer)
     assert len(orderers) == 3
     assert before_orderers_count == Orderer.objects.count()
 
+
+@pytest.mark.django_db
+def test_save_new_orderer_if_only_one_field_is_different(client):
+    before_orderers_count = Orderer.objects.count()
+
+    orderer_data = {
+        'name': '권영재',
+        'email': 'kyoje11@gmail.com',
+        'phone_number': '01037370424',
+        'password': 'dudwo1234!',
+        'eating_date': datetime.datetime.now(),
+        'delivery_location': '한성대학교 정문',
+        '삼겹': 22,
+        '목살': 33
+    }
+
+    client.post('/orders/new/', orderer_data)
+
+    assert Orderer.objects.count() == before_orderers_count + 1
+    assert len(Orderer.objects.filter(name='권영재')) == 2
