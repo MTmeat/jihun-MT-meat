@@ -22,7 +22,8 @@ def forwards_func(apps, schema_editor):
     meat_price2 = MeatPrice.objects.create(name="목살", price=6000, origin="칠레")
 
     orderer = Orderer.objects.create(
-        username='권영재',
+        username='권영재' + 'nesoy',
+        name='권영재',
         email='nesoy@gmail.com',
         phone_number='01037370424',
         password=make_password('dudwo1234!'),

@@ -2,14 +2,40 @@ from django.db import models
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.core.mail import send_mail
-
+from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth import authenticate
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.hashers import make_password, is_password_usable
+
 
 class Orderer(AbstractUser):
     def __str__(self):
         return self.username
+
     phone_number = models.CharField(max_length=13, blank=False)
+    name = models.CharField(max_length=30)
+
+    def get_username(self):
+        return self.name + self.email.split('@')[0]
+
+    def is_exist(self):
+        _username = self.name+self.email.split('@')[0]
+        try:
+            orderer = Orderer.objects.get(
+                username=_username,
+                name=self.name,
+                email=self.email,
+            )
+
+            user = authenticate(username=_username, password=self.password)
+            if user is None:  # if password incorrect
+                orderer.password = make_password(self.password)
+                orderer.save()
+
+            return True
+
+        except ObjectDoesNotExist:
+            return False
 
 
 @receiver(pre_save, sender=Orderer)
