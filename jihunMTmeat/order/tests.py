@@ -8,7 +8,8 @@ from order.models import MeatPrice, Orderer, MeatOrder, Order
 
 def login_test_user(client):
     client_data = {
-        'username': '권영재nesoy',
+        'name': '권영재',
+        'email': 'nesoy@gmail.com',
         'password': 'dudwo1234!',
     }
     client.post('/orderers/login/', client_data)
@@ -73,8 +74,9 @@ def test_show_order_information(client):
 @pytest.mark.django_db
 def test_success_login_form(client):
     client_data = {
-        'username': '권영재nesoy',
-        'password': 'dudwo1234!',
+        'name' : '권영재',
+        'email' : 'nesoy@gmail.com',
+        'password' : 'dudwo1234!',
     }
 
     response = client.post('/orderers/login/', client_data)
@@ -86,7 +88,8 @@ def test_success_login_form(client):
 @pytest.mark.django_db
 def test_fail_login_form(client):
     client_data = {
-        'username': '최지훈nesoy',
+        'name': '권영재',
+        'email': 'kyoje11@gmail.com',
         'password': 'dudwo1234!',
     }
     response = client.post('/orderers/login/', client_data)

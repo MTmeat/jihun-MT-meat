@@ -74,9 +74,10 @@ def view_order(request, orderer_id):
 
 def login_order(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(username=username, password=password)
+
+        form = LoginForm(request.POST)
+        user = form.auth(request)
+
         if user is not None:
             login(request, user)
             return redirect('/orderers/'+str(user.id)+'/orders/')
