@@ -11,26 +11,26 @@
 
 {% include 'nav_bar.html' %}
 <!-- About Section -->
-<section class="success" id="about">
+<section id="about">
     <br>
-    <div class="container">
-        <h2 class="text-center">주문 정보</h2>
-        <hr class="star-light">
-        <div class="row">
-            <div class="col-lg-6 ml-auto">
+    <div>
+        <h2>주문 정보</h2>
+        <hr>
+        <div>
+            <div>
                 <h3>주문자 정보</h3>
                 {{ orderer.username }} <br/>
                 {{ orderer.email }} <br/>
                 {{ orderer.phone_number }} <br/><br/>
             </div>
-            <div class="col-lg-6 mr-auto">
+            <div>
                 <h3>입금 정보</h3>
                 우리은행 <br/>
                 1002-750-309142 <br/>
                 최지훈 <br/>
                 <br/>
             </div>
-            <div class="col-lg-12 mx-auto">
+            <div>
                 <h3>주문 내역</h3>
                 {% for order in orders %}
                     {{ order.eating_date }} <br/>
