@@ -4,6 +4,8 @@
     <title>Jihun's MT Meat</title>
     {% include 'head.html' %}
     {% load static %}
+
+
   </head>
 
   <body id="page-top">
@@ -11,12 +13,7 @@
     <!-- Header -->
     <header>
       <div>
-        <img src="{% static 'img/meat.jpg' %}" alt="">
-        <div>
-          <span>JIHUN'S MT MEAT</span>
-          <hr>
-          <span>Hansung Univ</span>
-        </div>
+        <img class="ui fluid image" src="{% static 'img/meat.jpg' %}" alt="">
       </div>
 
       <form method="post" action="/ordermeats/new/">
