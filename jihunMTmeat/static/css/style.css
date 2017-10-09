@@ -1,0 +1,8 @@
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+
+#mainNav a{
+    font-family: 'Hanna', sans-serif;
+    color: white;
+    font-size: 150%;
+
+}
