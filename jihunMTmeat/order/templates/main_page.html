@@ -1,76 +1,78 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Jihun's MT Meat</title>
     {% include 'head.html' %}
     {% load static %}
 
 
-  </head>
-
-  <body id="page-top">
-    {% include 'nav_bar.html' %}
-    <!-- Header -->
-    <header>
-      <div>
+</head>
+<body id="page-top" class="ui vertically grid">
+{% include 'nav_bar.html' %}
+<div class="one column row">
+    <div class="column">
         <img class="ui fluid image" src="{% static 'img/meat.jpg' %}" alt="">
-      </div>
+    </div>
+    <div class="column">
+        {% include 'order_form.html' %}
+    </div>
+    <div class="column">
+        <form method="post" action="/ordermeats/new/">
+            {% csrf_token %}
+            {% for meat_info in meat_price_list %}
+                <div id="{{ meat_info.name }}">
+                    <div>{{ meat_info.name }}</div>
+                    <div>{{ meat_info.origin }}</div>
+                    <span>{{ meat_info.price }}</span>
+                    <input type="number" onchange="calculateTotalPrice()" name="{{ meat_info.name }}" value="0">
+                    <button type="button">+</button>
+                    <button type="button">-</button>
+                </div>
+            {% endfor %}
+            <div>
+                합계 $<span id="total">0</span>
+            </div>
+            <br/>
+            <input type="submit" value="주문하기">
+        </form>
+    </div>
+    <div class="column">
+        {% include 'footer.html' %}
+    </div>
+</div>
+<script>
+    $("button").on("click", function () {
+        var $button = $(this);
+        var oldValue = $button.parent().find("input").val();
 
-      <form method="post" action="/ordermeats/new/">
-        {% csrf_token %}
-        {% for meat_info in meat_price_list %}
-        <div id="{{ meat_info.name }}">
-          <div>{{ meat_info.name }}</div>
-            <div>{{ meat_info.origin }}</div>
-          <span>{{ meat_info.price }}</span>
-          <input type="number" onchange="calculateTotalPrice()" name="{{ meat_info.name }}" value="0">
-          <button type="button">+</button>
-          <button type="button">-</button>
-        </div>
-        {% endfor %}
-        <div>
-          합계 $<span id="total">0</span>
-        </div>
-        <br/>
-        <input type="submit" value="주문하기">
-      </form>
 
-    </header>
-
-    {% include 'footer.html' %}
-
-    <script>
-          $("button").on("click", function() {
-            var $button = $(this);
-            var oldValue = $button.parent().find("input").val();
-
-
-            if ($button.text() == "+") {
-              var newVal = parseFloat(oldValue) + 1;
-            }
-            else {
-              // Don't allow decrementing below zero
-              if (oldValue > 0) {
+        if ($button.text() == "+") {
+            var newVal = parseFloat(oldValue) + 1;
+        }
+        else {
+            // Don't allow decrementing below zero
+            if (oldValue > 0) {
                 var newVal = parseFloat(oldValue) - 1;
-              } else {
+            } else {
                 newVal = 0;
-              }
             }
+        }
 
-            $button.parent().find("input").val(newVal);
+        $button.parent().find("input").val(newVal);
 
-            /* Calculate Total Price */
-            calculateTotalPrice();
-          });
-          function calculateTotalPrice(){
-              var 삼겹가격 = $("#삼겹 span").text();
-              var 목살가격 = $("#목살 span").text();
-              var 삼겹개수 = $("#삼겹 input").val();
-              var 목살개수 = $("#목살 input").val();
-              var totalPrice = 삼겹가격 * 삼겹개수 + 목살가격 * 목살개수;
-              $("#total").text(totalPrice);
-          }
-    </script>
-  </body>
+        /* Calculate Total Price */
+        calculateTotalPrice();
+    });
+
+    function calculateTotalPrice() {
+        var 삼겹가격 = $("#삼겹 span").text();
+        var 목살가격 = $("#목살 span").text();
+        var 삼겹개수 = $("#삼겹 input").val();
+        var 목살개수 = $("#목살 input").val();
+        var totalPrice = 삼겹가격 * 삼겹개수 + 목살가격 * 목살개수;
+        $("#total").text(totalPrice);
+    }
+</script>
+</body>
 
 </html>

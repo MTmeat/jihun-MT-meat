@@ -1,8 +1,23 @@
 @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
 
+
 #mainNav a{
     font-family: 'Hanna', sans-serif;
     color: white;
     font-size: 150%;
+}
+
+#orderNav{
+    background-image: url("/static/img/meat.jpg");
+    background-size: cover;
+    /*Font*/
+    font-family: 'Hanna', sans-serif;
+    color: white;
+    font-size: 150%;
+}
+
+body{
+  font-family: 'Hanna', sans-serif;
+    font-size: 100%;
 
 }
