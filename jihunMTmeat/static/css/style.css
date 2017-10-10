@@ -10,24 +10,24 @@
 
 
 #meatOrder{
-    height: 600px;
     background-color: #FFFFFF;
     text-align: center;
     margin-left: 100px;
     margin-right: 100px;
+    margin-bottom: 50px;
 }
 
-.meatInfo{
+.meatInfoBox{
     height: 400px;
     width: 20%;
     margin: 20px;
 }
 
-.meatInfo p{
+.meatInfoBox p{
     margin: 15px;
 }
 
-.meatInfo h3{
+.meatInfoBox h3{
     margin: 0;
     padding: 0;
 }
