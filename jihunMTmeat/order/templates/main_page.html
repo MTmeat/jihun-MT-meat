@@ -4,14 +4,15 @@
     <title>Jihun's MT Meat</title>
     {% include 'head.html' %}
     {% load static %}
-
-
 </head>
 <body id="page-top" class="ui vertically grid">
 {% include 'nav_bar.html' %}
 <div class="one column row">
-    <div class="column">
-        <img class="ui fluid image" src="{% static 'img/meat.jpg' %}" alt="">
+    <div id="mainTitle" class="column">
+        {% include 'main_title.html' %}
+    </div>
+    <div id="meatOrder" class="column">
+        {% include 'meat_order_info.html' %}
     </div>
     <div class="column">
         {% include 'order_form.html' %}
