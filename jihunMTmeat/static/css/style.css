@@ -1,5 +1,38 @@
 @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
 
+#mainTitle{
+    background-image: url("/static/img/meat.jpg");
+    height: 600px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+#meatOrder{
+    height: 600px;
+    background-color: #FFFFFF;
+    text-align: center;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.meatInfo{
+    height: 400px;
+    width: 20%;
+    margin: 20px;
+}
+
+.meatInfo p{
+    margin: 15px;
+}
+
+.meatInfo h3{
+    margin: 0;
+    padding: 0;
+}
+
+
 
 #mainNav a{
     font-family: 'Hanna', sans-serif;
@@ -17,7 +50,11 @@
 }
 
 body{
-  font-family: 'Hanna', sans-serif;
+    font-family: 'Hanna', sans-serif;
     font-size: 100%;
 
+}
+
+.highlight-text{
+    color: #711010;
 }
