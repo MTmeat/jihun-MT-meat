@@ -1,6 +1,6 @@
 @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
 
-#mainTitle{
+#mainTitle {
     background-image: url("/static/img/meat2.png");
     height: 600px;
     background-repeat: no-repeat;
@@ -12,19 +12,19 @@
     padding-right: 40px;
 }
 
-#mainTitle h1{
+#mainTitle h1 {
     color: #FFFFFF;
     margin-top: 350px;
     letter-spacing: 5px;
 }
 
-#mainTitle a{
+#mainTitle a {
     color: #FFFFFF;
     font-family: 'Hanna', sans-serif;
     font-size: 120%;
 }
 
-#meatOrder{
+#meatOrder {
     background-color: #FFFFFF;
     text-align: center;
     margin-left: 100px;
@@ -32,37 +32,58 @@
     margin-bottom: 50px;
 }
 
-.meatInfoBox{
+.meatInfoBox {
     height: 400px;
     width: 20%;
     margin: 20px;
 }
 
-.meatInfoBox p{
+.meatInfoBox p {
     margin: 15px;
 }
 
-.meatInfoBox h3{
+.meatInfoBox h3 {
     margin: 0;
     padding: 0;
 }
 
-
-#orderNav{
+#orderNav {
     background-image: url("/static/img/meat.jpg");
     background-size: cover;
-    /*Font*/
-    font-family: 'Hanna', sans-serif;
-    color: white;
-    font-size: 150%;
 }
 
-body{
+body {
     font-family: 'Hanna', sans-serif;
     font-size: 100%;
 
 }
 
-.highlight-text{
+h2 {
+    font-family: 'Hanna', sans-serif;
+    font-size: 150%;
+}
+
+.highlight-text {
     color: #711010;
 }
+
+.highlight-white-text {
+    color: #FFFFFF;
+}
+
+.highlight-border {
+    border: 1.5px solid #FFFFFF;
+    padding: 20px 0px 20px 0px;
+    margin: 20px 50px 20px 50px;
+}
+
+.white-board {
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.deep-white-board {
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
