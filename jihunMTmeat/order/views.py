@@ -12,7 +12,9 @@ from order.forms import OrdererForm, OrderForm, LoginForm
 @require_GET
 def main_page(request):
     meat_price_list = MeatPrice.objects.all()
-    return render(request, 'main_page.html', {'meat_price_list': meat_price_list})
+    orderer_form = OrdererForm()
+    order_form = OrderForm()
+    return render(request, 'main_page.html', {'meat_price_list': meat_price_list, 'orderer_form': orderer_form, 'order_form': order_form})
 
 
 @require_GET
