@@ -8,19 +8,19 @@
                         <div class="column item">
                             남자 인원수
                             <div class="ui mini right icon input" style="width:55%">
-                                <input type="number">
+                                <input type="number" value="0" id="man" onchange="meatRecommand()">
                                 <i class="male icon"></i>
                             </div>
                         </div>
                         <div class="column item">
                             여자 인원수
                             <div class="ui mini right icon input" style="width:55%">
-                                <input type="number">
+                                <input type="number" value="0" id="woman" onchange="meatRecommand()">
                                 <i class="female icon"></i>
                             </div>
                         </div>
                         <div class="column item">
-                            <div class="ui radio checkbox"><input type="radio" name="size">
+                            <div class="ui radio checkbox"><input type="radio" name="size" checked>
                                 <label style="color: #FFFFFF;">적당하게</label>
                             </div>
                             <div class="ui radio checkbox"><input type="radio" name="size">
@@ -28,7 +28,7 @@
                             </div>
                         </div>
                         <div class="column item">
-                            삼겹 1개 & 목살 1개를
+                            삼겹 <span id="추천삼겹">0</span>개 & 목살 <span id="추천목살">0</span>개를
                             추천해드립니다.
                         </div>
                     </div>
@@ -37,67 +37,75 @@
             <div style="font-size: 150%; margin: 5%">적용하기</div>
         </div>
         <div class="ten wide column white-board">
-            <h2><span class="highlight-text ">주문정보</span>를 작성해주세요.</h2>
-            <div class="deep-white-board">
-                <div class="ui stackable left aligned grid">
-                    <div class="two column row">
-                        <div class="column item">
-                            이름
-                            <div class="ui mini input" style=" width:55%">
-                                <input type="text" placeholder="박예림">
+            <form method="post" action="/ordermeats/new/">
+                <h2><span class="highlight-text ">주문정보</span>를 작성해주세요.</h2>
+                <div class="deep-white-board">
+                    <div class="ui stackable left aligned grid">
+                        <div class="two column row">
+                            <div class="column item">
+                                이름
+                                <div class="ui mini input" style=" width:55%">
+                                    <input type="text" placeholder="박예림">
+                                </div>
                             </div>
-                        </div>
-                        <div class="column item">
-                            연락처
-                            <div class="ui mini input" style="width:55%">
-                                <input type="text" placeholder="010-1234-1234">
+                            <div class="column item">
+                                연락처
+                                <div class="ui mini input" style="width:55%">
+                                    <input type="text" placeholder="010-1234-1234">
+                                </div>
                             </div>
-                        </div>
-                        <div class="column item">
-                            Email
-                            <div class="ui mini input" style=" width:55%">
-                                <input type="email" placeholder="kyoje11@gmail.com">
+                            <div class="column item">
+                                Email
+                                <div class="ui mini input" style=" width:55%">
+                                    <input type="email" placeholder="kyoje11@gmail.com">
+                                </div>
                             </div>
-                        </div>
-                        <div class="column item">
-                            Password
-                            <div class="ui mini input" style="width:55%">
-                                <input type="password" placeholder="************">
+                            <div class="column item">
+                                Password
+                                <div class="ui mini input" style="width:55%">
+                                    <input type="password" placeholder="************">
+                                </div>
                             </div>
-                        </div>
-                        <div class="column item">
-                            고기수령날짜
-                            <div class="ui mini input" style=" width:55%">
-                                <input type="text" placeholder="박예림">
+                            <div class="column item">
+                                고기수령날짜
+                                <div class="ui mini input" style=" width:55%">
+                                    <input type="text" placeholder="박예림">
+                                </div>
                             </div>
-                        </div>
-                        <div class="column item">
-                            배달장소
-                            <div class="ui mini input" style="width:55%">
-                                <input type="text" placeholder="한성대">
+                            <div class="column item">
+                                배달장소
+                                <div class="ui mini input" style="width:55%">
+                                    <input type="text" placeholder="한성대">
+                                </div>
                             </div>
-                        </div>
-                        <div class="column item">
-                            고기수량
-                            <div style="text-align: right">
-                                <span class="highlight-text">삼겹</span>
-                                7800 X 10
+                            <div class="column item">
+                                고기수량
+                                {% csrf_token %}
+                                {% for meat_info in meat_price_list %}
+                                    <div style="text-align: right">
+                                        <span class="highlight-text">{{ meat_info.name }}</span>
+                                        <span>{{ meat_info.price }}</span> X
+                                        <div class="ui mini input" style=" width:25%">
+                                            <input type="number" id="{{ meat_info.name }}" price="{{ meat_info.price }}"
+                                                   placeholder="0" onchange="calculateTotalPrice()">
+                                        </div>
+                                    </div>
+                                {% endfor %}
                             </div>
-                            <div style="text-align: right">
-                                <span class="highlight-text">목살</span>
-                                7800 X 10
+                            <div class="column item">
+                                <h2>
+                                    총금액
+                                    <div style="text-align: right" id="total">0원</div>
+                                </h2>
                             </div>
-                        </div>
-                        <div class="column item">
-                            <h2>
-                                총금액
-                                <div style="text-align: right">10000000원</div>
-                            </h2>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div style="font-size: 150%; margin: 5%">주문하기</div>
+                <div style="font-size: 150%; margin: 5%">
+                    <input type="submit" value="주문하기">
+                </div>
+            </form>
         </div>
     </div>
 </div>
+
