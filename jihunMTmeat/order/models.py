@@ -110,6 +110,7 @@ class MeatPrice(models.Model):
     name = models.CharField(default='', null=False, max_length=254, primary_key=True)
     price = models.IntegerField()
     origin = models.CharField(null=False, max_length=254)
+    explain = models.CharField(null=False, max_length=2048)
 
 
 class MeatOrder(models.Model):

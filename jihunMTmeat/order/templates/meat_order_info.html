@@ -11,7 +11,7 @@
         {% for meat_price in two_meat_price %}
         <div class="seven wide column meatInfoBox">
             <img class="ui fluid image" src="{% static 'img/meat.jpg' %}">
-            <p>쫄깃쫄깃 소주와 함께 맛있는 <span class="highlight-text">{{ meat_price.name }}</span></p>
+            <p>{{ meat_price.explain }} <span class="highlight-text">{{ meat_price.name }}</span></p>
             <h3>{{ meat_price.price }} 원</h3>
         </div>
         {% endfor %}
