@@ -7,14 +7,13 @@
     쉽게 예약하고 저렴하게 맛있는 고기를 드실 수 있습니다.
 </div>
 <div class="stackable equal width center aligned ui grid">
-    <div class="seven wide column meatInfoBox">
-        <img class="ui fluid image" src="{% static 'img/meat.jpg' %}">
-        <p>쫄깃쫄깃 소주와 함께 맛있는 <span class="highlight-text">삼겹살</span></p>
-        <h3>7800원</h3>
-    </div>
-    <div class="seven wide column meatInfoBox">
-        <img class="ui fluid image" src="{% static 'img/meat.jpg' %}">
-        <p>부들부들 맥주와 함께 맛있는 <span class="highlight-text">목살</span></p>
-        <h3>7800원</h3>
-    </div>
+    {% for two_meat_price in meat_price_list_by_two %}
+        {% for meat_price in two_meat_price %}
+        <div class="seven wide column meatInfoBox">
+            <img class="ui fluid image" src="{% static 'img/meat.jpg' %}">
+            <p>{{ meat_price.explain }} <span class="highlight-text">{{ meat_price.name }}</span></p>
+            <h3>{{ meat_price.price }} 원</h3>
+        </div>
+        {% endfor %}
+    {% endfor %}
 </div>
