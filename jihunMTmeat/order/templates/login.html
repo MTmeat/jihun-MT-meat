@@ -13,98 +13,49 @@
         <div class="white-board">
             <h2><span class="highlight-text">주문자 정보</span>를 작성해주세요.</h2>
             <div class="deep-white-board">
-                <div class="input-box">
-                    <div class="input-label">
-                        <span>이름</span>
-                    </div>
-                    <div class="ui large input">
-                        <input type="text">
-                    </div>
-                </div>
-                <div class="input-box">
-                    <div class="input-label">
-                        <span>이메일</span>
-                    </div>
-                    <div class="ui large input">
-                        <input type="email">
-                    </div>
-                </div>
-                <div class="input-box">
-                    <div class="input-label">
-                        <span>비밀번호</span>
-                    </div>
-                    <div class="ui large input">
-                        <input type="password">
-                    </div>
-                </div>
-                <div class="input-box">
-                    <div class="input-label">
-                        <span>비밀번호 확인</span>
-                    </div>
-                    <div class="ui large input">
-                        <input type="password">
-                    </div>
-                </div>
-            </div>
-            <button>주문하기</button>
-        </div>
-    </div>
-</div>
-
-
-<!-- Contact Section -->
-<section id="contact">
-    <br/>
-    <br/>
-    <div>
-        <h2>로그인 정보 입력</h2>
-        {% if status == False %}
-            <p>
-                입력하신 정보와 일치하는 정보가 없습니다.
-            </p>
-        {% endif %}
-        <div>
-            <div>
-                <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-                <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
                 <form id="orderForm" method="post" action="/orderers/login/" novalidate>
                     {% csrf_token %}
-                    <div>
-                        <div>
-                            <label>이름</label>
+                    <div class="input-box">
+                        <div class="input-label">
+                            <span>이름</span>
+                        </div>
+                        <div class="ui large input">
                             {{ login_form.name.errors }}
                             {{ login_form.name }}
-                            <p></p>
                         </div>
                     </div>
-                    <div>
-                        <div>
-                            <label>Email</label>
+                    <div class="input-box">
+                        <div class="input-label">
+                            <span>이메일</span>
+                        </div>
+                        <div class="ui large input">
                             {{ login_form.email.errors }}
                             {{ login_form.email }}
-                            <p></p>
                         </div>
                     </div>
-                    <div>
-                        <div>
-                            <label>비밀번호</label>
+                    <div class="input-box">
+                        <div class="input-label">
+                            <span>비밀번호</span>
+                        </div>
+                        <div class="ui large input">
                             {{ login_form.password.errors }}
                             {{ login_form.password }}
-                            <p></p>
                         </div>
                     </div>
-                    <br>
-                    <div>
-                        <button id="sendOrderButton" type="submit">완료</button>
-                    </div>
+                    {% if status == False %}
+                        <p>
+                            입력하신 정보와 일치하는 정보가 없습니다.
+                        </p>
+                    {% endif %}
+                    <button id="sendOrderButton" type="submit">로그인</button>
                 </form>
             </div>
         </div>
     </div>
-</section>
-<br/>
+</div>
+
 {% load static %}
-{% include 'form_base.html' %}
 <script src="{% static 'js/order.js' %}"></script>
+
 </body>
 </html>
