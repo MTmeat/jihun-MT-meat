@@ -34,3 +34,4 @@ function calculateTotalPrice() {
 
     $("#total").text(totalPrice+'원');
 }
+
