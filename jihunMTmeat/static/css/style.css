@@ -86,7 +86,8 @@
 
 #login .input-box {
     width: 400px;
-    height: 110px;
+    height: 85px;
+    margin-top: 15px;
 }
 
 #login .input-box .input-label {
