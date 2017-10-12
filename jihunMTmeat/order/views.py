@@ -12,9 +12,18 @@ from order.forms import OrdererForm, OrderForm, LoginForm
 @require_GET
 def main_page(request):
     meat_price_list = MeatPrice.objects.all()
+    meat_price_list_by_two = []
+    for i, meat_price in enumerate(meat_price_list):
+        if i % 2 == 1:
+            continue
+        if i == len(meat_price_list)-1:
+            meat_price_list_by_two.append([meat_price_list[i]])
+        else:
+            meat_price_list_by_two.append([meat_price_list[i], meat_price_list[i+1]])
+
     orderer_form = OrdererForm()
     order_form = OrderForm()
-    return render(request, 'main_page.html', {'meat_price_list': meat_price_list, 'orderer_form': orderer_form, 'order_form': order_form})
+    return render(request, 'main_page.html', {'meat_price_list_by_two': meat_price_list_by_two, 'orderer_form': orderer_form, 'order_form': order_form})
 
 
 @require_GET
