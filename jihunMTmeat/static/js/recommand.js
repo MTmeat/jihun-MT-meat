@@ -24,10 +24,10 @@ function meatRecommand() {
 
 
 function calculateTotalPrice() {
-    var 삼겹가격 = $("#삼겹").attr('price');
+    var 삼겹가격 = $("#삼겹살").attr('price');
     var 목살가격 = $("#목살").attr('price');
 
-    var 삼겹개수 = $("#삼겹").val();
+    var 삼겹개수 = $("#삼겹살").val();
     var 목살개수 = $("#목살").val();
 
     var totalPrice = 삼겹가격 * 삼겹개수 + 목살가격 * 목살개수;
