@@ -83,6 +83,13 @@
     width: 500px;
     height: 450px;
 }
+#view-order .deep-white-board {
+    margin: auto;
+    padding: 60px 0px 80px 30px;
+    width: 100%;
+    height: 450px;
+}
+
 
 #login .input-box {
     width: 400px;
