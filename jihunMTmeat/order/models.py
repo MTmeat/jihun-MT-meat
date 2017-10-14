@@ -111,6 +111,7 @@ class MeatPrice(models.Model):
     price = models.IntegerField()
     origin = models.CharField(null=False, max_length=254)
     explain = models.CharField(null=False, max_length=2048)
+    image = models.ImageField()
 
 
 class MeatOrder(models.Model):
