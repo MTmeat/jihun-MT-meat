@@ -12,7 +12,8 @@
 #mainTitle h1 {
     color: #FFFFFF;
     margin-top: 350px;
-    letter-spacing: 5px;
+    letter-spacing: 10px;
+    font-size: 180%;
 }
 
 #navBar {
@@ -119,7 +120,14 @@ body {
 h2 {
     font-family: 'Hanna', sans-serif;
     font-size: 150%;
+    font-weight: normal;
 }
+h3 {
+    font-family: 'Hanna', sans-serif;
+    font-size: 130%;
+    font-weight: normal;
+}
+
 
 .highlight-text {
     color: #711010;
