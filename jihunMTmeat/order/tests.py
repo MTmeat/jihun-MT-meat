@@ -38,7 +38,7 @@ def test_save_orderer_information(client):
         'deposit_status': 'W',
         'is_delivery': False,
         'delivery_location': '한성대',
-        '삼겹': 3,
+        '삼겹살': 3,
         '목살': 2
     }
 
@@ -62,13 +62,12 @@ def test_show_order_information(client):
     response = client.get(reverse('order:view_order', args=[orderer.id]))
 
     # orderer info
-    assert orderer.username in response.content.decode('utf-8')
-    assert orderer.email in response.content.decode('utf-8')
-    assert orderer.phone_number in response.content.decode('utf-8')
+    assert orderer.name in response.content.decode('utf-8')
 
     # meatorder info
     for meat_order in meat_order_list:
-        assert meat_order.meat_price.name + ' ' + str(meat_order.count) + '근' in response.content.decode('utf-8')
+        assert meat_order.meat_price.name in response.content.decode('utf-8')
+        assert ' X ' + str(meat_order.count) + '개' in response.content.decode('utf-8')
 
 
 @pytest.mark.django_db
@@ -128,7 +127,7 @@ def test_dont_save_orderer_if_have_ordered_before(client):
         'password': 'dudwo1234!',
         'eating_date': datetime.datetime.now(),
         'delivery_location': '한성대학교 정문',
-        '삼겹': 22,
+        '삼겹살': 22,
         '목살': 33
     }
 
@@ -153,7 +152,7 @@ def test_save_new_orderer_if_only_one_field_is_different(client):
         'password': 'dudwo1234!',
         'eating_date': datetime.datetime.now(),
         'delivery_location': '한성대학교 정문',
-        '삼겹': 22,
+        '삼겹살': 22,
         '목살': 33
     }
 
@@ -164,7 +163,7 @@ def test_save_new_orderer_if_only_one_field_is_different(client):
         'password': 'wlgns1234!',
         'eating_date': datetime.datetime.now(),
         'delivery_location': '한성대학교 후문',
-        '삼겹': 5,
+        '삼겹살': 5,
         '목살': 5
     }
 
@@ -187,7 +186,7 @@ def test_update_password_if_only_password_is_different(client):
         'password': 'dudwo1234!2!',
         'eating_date': datetime.datetime.now(),
         'delivery_location': '한성대학교 정문',
-        '삼겹': 22,
+        '삼겹살': 22,
         '목살': 33
     }
 

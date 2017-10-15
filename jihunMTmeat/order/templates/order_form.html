@@ -87,15 +87,19 @@
                             </div>
                             <div class="column item">
                                 고기수량
-                                {% for meat_info in meat_price_list %}
-                                    <div style="text-align: right">
-                                        <span class="highlight-text">{{ meat_info.name }}</span>
-                                        <span>{{ meat_info.price }}</span> X
-                                        <div class="ui mini input" style=" width:25%">
-                                            <input type="number" id="{{ meat_info.name }}" name="{{ meat_info.name }}" price="{{ meat_info.price }}"
-                                                   placeholder="0" onchange="calculateTotalPrice()">
+                                {% for two_meat_price in meat_price_list_by_two %}
+                                    {% for meat_price in two_meat_price %}
+                                        <div style="text-align: right">
+                                            <span class="highlight-text">{{ meat_price.name }}</span>
+                                            <span>{{ meat_price.price }}</span> X
+                                            <div class="ui mini input" style=" width:25%">
+                                                <input type="number" id="{{ meat_price.name }}"
+                                                       name="{{ meat_price.name }}"
+                                                       price="{{ meat_price.price }}"
+                                                       placeholder="0" onchange="calculateTotalPrice()">
+                                            </div>
                                         </div>
-                                    </div>
+                                    {% endfor %}
                                 {% endfor %}
                             </div>
                             <div class="column item">
