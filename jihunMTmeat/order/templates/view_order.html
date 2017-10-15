@@ -1,50 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <head>
-        <title>Jihun's MT Meat</title>
-        {% include 'head.html' %}
-        {% load static %}
-    </head>
+    <title>Jihun's MT Meat</title>
+    {% include 'head.html' %}
+    {% load static %}
 </head>
 <body>
 
-{% include 'nav_bar.html' %}
-<!-- About Section -->
-<section id="about">
-    <br>
-    <div>
-        <h2>주문 정보</h2>
-        <hr>
-        <div>
-            <div>
-                <h3>주문자 정보</h3>
-                {{ orderer.username }} <br/>
-                {{ orderer.email }} <br/>
-                {{ orderer.phone_number }} <br/><br/>
-            </div>
-            <div>
-                <h3>입금 정보</h3>
-                우리은행 <br/>
-                1002-750-309142 <br/>
-                최지훈 <br/>
-                <br/>
-            </div>
-            <div>
-                <h3>주문 내역</h3>
-                {% for order in orders %}
-                    {{ order.eating_date }} <br/>
-                    {{ order.delivery_location }} <br/>
-                    {% for meat_order in order.meat_orders %}
-                        {{ meat_order.meat_price.name }} {{ meat_order.count }}근 <br/>
-                    {% endfor %}
-                    합계 : {{ order.get_amount }} <br/>
-                    {{ order.get_order_status_display }} <br/><br/>
-                {% endfor %}
+<div id="login">
+    {% include 'nav_bar.html' %}
+    <div id="view-order" class="highlight-border">
+        <div class="white-board">
+            <h2>{{ orderer.name }}님의 <span class="highlight-text">주문 내역</span>입니다.</h2>
+            입금 정보 : [우리은행] 최지훈 1002-750-309142
+            <div class="deep-white-board">
+                <div class="ui stackable left aligned grid">
+                    <div class="five column row">
+                        <div class="column item">
+                            수령 날짜
+                        </div>
+                        <div class="column item">
+                            고기 수량
+                        </div>
+                        <div class="column item">
+                            총 금액
+                        </div>
+                        <div class="column item">
+                            상태
+                        </div>
+                        <div class="column item">
+                            배달 장소
+                        </div>
+                        {% for order in orders %}
+                            <div class="column item">
+                                {{ order.eating_date }}
+                            </div>
+                            <div class="column item">
+                                {% for meat_order in order.meat_orders %}
+                                    <span class="highlight-text">{{ meat_order.meat_price.name }}</span> X {{ meat_order.count }}개 <br/>
+                                {% endfor %}
+                            </div>
+                            <div class="column item">
+                                {{ order.get_amount }}원
+                            </div>
+                            <div class="column item">
+                                {{ order.get_order_status_display }}
+                            </div>
+                            <div class="column item">
+                                {{ order.delivery_location }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</section>
+</div>
+
 
 {% include 'footer.html' %}
 </body>
