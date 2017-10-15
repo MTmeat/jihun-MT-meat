@@ -31,13 +31,10 @@
 #meatOrder {
     background-color: #FFFFFF;
     text-align: center;
-    margin-left: 100px;
-    margin-right: 100px;
-    margin-bottom: 50px;
+    margin: 20px 100px 100px 100px;
 }
 
 .meatInfoBox {
-    height: 400px;
     width: 20%;
     margin: 20px;
 }
@@ -114,7 +111,7 @@
 
 body {
     font-family: 'Hanna', sans-serif;
-    font-size: 100%;
+    font-size: 170%;
 }
 
 h2 {
