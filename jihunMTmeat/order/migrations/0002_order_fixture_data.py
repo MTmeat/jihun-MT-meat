@@ -18,8 +18,8 @@ def forwards_func(apps, schema_editor):
     admin.is_superuser = True
     admin.save()
 
-    meat_price1 = MeatPrice.objects.create(name="삼겹살", price=7800, origin="칠레", explain="쫄깃쫄깃 소주와 함께 맛있는")
-    meat_price2 = MeatPrice.objects.create(name="목살", price=6000, origin="칠레", explain="부들부들 맥주와 함께 맛있는")
+    meat_price1 = MeatPrice.objects.create(name="삼겹살", price=7800, origin="칠레", explain="쫄깃쫄깃 소주와 함께 맛있는", image='/static/img/삼겹살.jpg')
+    meat_price2 = MeatPrice.objects.create(name="목살", price=6000, origin="칠레", explain="부들부들 맥주와 함께 맛있는", image='/static/img/목살.jpg')
 
     orderer = Orderer.objects.create(
         username='권영재' + 'nesoy',
