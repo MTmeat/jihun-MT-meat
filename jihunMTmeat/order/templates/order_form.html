@@ -1,21 +1,21 @@
-<div class="ui stackable center aligned vertically grid" id="orderNav">
+<div class="ui stackable center aligned vertically grid" id="order">
     <div class="two column row highlight-border">
         <div class="five wide column highlight-white-text black-board">
-            <h2>지훈이의 추천</h2>
+            <h2 class="h2-kr">지훈이의 추천</h2>
             <div class="deep-black-board">
                 <div class="ui stackable center aligned grid">
                     <div class="one column row">
                         <div class="column item">
                             남자 인원수
                             <div class="ui mini right icon input" style="width:55%">
-                                <input type="number" value="0" id="man" onchange="meatRecommand()">
+                                <input class="white" type="number" value="0" id="man" onchange="meatRecommand()">
                                 <i class="male icon"></i>
                             </div>
                         </div>
                         <div class="column item">
                             여자 인원수
                             <div class="ui mini right icon input" style="width:55%">
-                                <input type="number" value="0" id="woman" onchange="meatRecommand()">
+                                <input class="white" type="number" value="0" id="woman" onchange="meatRecommand()">
                                 <i class="female icon"></i>
                             </div>
                         </div>
@@ -34,62 +34,62 @@
                     </div>
                 </div>
             </div>
-            <div style="font-size: 150%; margin: 5%">적용하기</div>
+            <button>적용하기</button>
         </div>
         <div class="ten wide column white-board">
-            <h2><span class="highlight-text ">주문정보</span>를 작성해주세요.</h2>
+            <h2 class="h2-kr"><span class="highlight-text">주문정보</span>를 작성해주세요.</h2>
             <form method="post" action="/orders/new/">
                 {% csrf_token %}
                 <div class="deep-white-board">
                     <div class="ui stackable left aligned grid">
                         <div class="two column row">
-                            <div class="column item">
-                                이름
-                                <div class="ui mini input" style=" width:55%">
+                            <div class="column item input-box">
+                                <label>이름</label>
+                                <div class="ui mini input">
                                     {{ orderer_form.name.errors }}
                                     {{ orderer_form.name }}
                                 </div>
                             </div>
-                            <div class="column item">
-                                연락처
-                                <div class="ui mini input" style="width:55%">
+                            <div class="column item input-box">
+                                <label>연락처</label>
+                                <div class="ui mini input">
                                     {{ orderer_form.phone_number.errors }}
                                     {{ orderer_form.phone_number }}
                                 </div>
                             </div>
-                            <div class="column item">
-                                Email
-                                <div class="ui mini input" style=" width:55%">
+                            <div class="column item input-box">
+                                <label>Email</label>
+                                <div class="ui mini input">
                                     {{ orderer_form.email.errors }}
                                     {{ orderer_form.email }}
                                 </div>
                             </div>
-                            <div class="column item">
-                                비밀번호
-                                <div class="ui mini input" style="width:55%">
+                            <div class="column item input-box">
+                                <label>비밀번호</label>
+                                <div class="ui mini input">
                                     {{ orderer_form.password.errors }}
                                     {{ orderer_form.password }}
                                 </div>
                             </div>
-                            <div class="column item">
-                                고기수령날짜
-                                <div class="ui mini input right icon" style=" width:55%">
+                            <div class="column item input-box">
+                                <label>고기수령날짜</label>
+                                <div class="ui mini input right icon">
                                     {{ order_form.eating_date.errors }}
                                     {{ order_form.eating_date }}
                                 </div>
                             </div>
-                            <div class="column item">
-                                배달장소
-                                <div class="ui mini input" style="width:55%">
+                            <div class="column item input-box">
+                                <label>배달장소</label>
+                                <div class="ui mini input">
                                     {{ order_form.delivery_location.errors }}
                                     {{ order_form.delivery_location }}
                                 </div>
                             </div>
-                            <div class="column item">
-                                고기수량
+                            <div class="column item input-box">
+                                <label>고기수량</label>
                                 {% for two_meat_price in meat_price_list_by_two %}
                                     {% for meat_price in two_meat_price %}
-                                        <div style="text-align: right">
+                                        <div>
                                             <span class="highlight-text">{{ meat_price.name }}</span>
                                             <span>{{ meat_price.price }}</span> X
                                             <div class="ui mini input" style=" width:25%">

@@ -47,11 +47,32 @@
     padding: 0;
 }
 
-#orderNav {
+#order {
     background-image: url("/static/img/meat.jpg");
     background-size: cover;
 }
 
+#order input {
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom-color: #0f0f10;
+    border-radius: 0;
+    background-color: rgba(255, 255, 255, 0);
+    width: 30%;
+}
+
+#order .white {
+    border-bottom-color: #FFFFFF;
+    color: #FFFFFF;
+}
+
+#order div .input-box {
+    padding-left: 30px;
+}
+
+#order label {
+}
 
 #login {
     background-image: url("/static/img/meat2.png");
@@ -114,6 +135,7 @@ body {
 }
 
 h2 {
+    font-weight: normal;
     font-family: 'Hanna', sans-serif;
     font-size: 150%;
     font-weight: normal;
@@ -124,6 +146,12 @@ h3 {
     font-weight: normal;
 }
 
+
+.h2-kr {
+    font-weight: normal;
+    font-family: 'Hanna', sans-serif;
+    font-size: 140%;
+}
 
 .highlight-text {
     color: #711010;
@@ -136,16 +164,18 @@ h3 {
 .highlight-border {
     border: 1.5px solid #FFFFFF;
     padding: 20px 0px 20px 0px;
-    margin: 20px 50px 20px 50px;
+    margin: 20px 30px 20px 50px;
 }
 
 .white-board {
+    margin-top: 100px;
     background-color: rgba(255, 255, 255, 0.5);
     padding: 20px;
 }
 
 .deep-white-board {
-    padding: 20px;
+    padding-left: 20px;
+    padding-right: 50px;
     background-color: rgba(255, 255, 255, 0.8);
 }
 
