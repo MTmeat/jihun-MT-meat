@@ -54,12 +54,15 @@ class LoginForm(forms.ModelForm):
         widgets = {
             'name': forms.TextInput(attrs={
                 'id': 'name',
+                'placeholder': '이름',
                 'data-validation-required-message': '이름을 입력해주세요.'}),
             'email': forms.EmailInput(attrs={
                 'id': 'email',
+                'placeholder': 'Email',
                 'data-validation-required-message': 'Email을 입력해주세요.'}),
             'password': forms.PasswordInput(attrs={
                 'id': 'password',
+                'placeholder': '비밀번호',
                 'data-validation-required-message': '비밀번호를 입력해주세요.'}),
         }
 

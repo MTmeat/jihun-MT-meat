@@ -97,9 +97,9 @@
 
 #login .deep-white-board {
     margin: auto;
-    padding: 60px 0px 80px 30px;
+    padding: 60px 30px 80px 30px;
     width: 500px;
-    height: 450px;
+    height: 500px;
 }
 #view-order .deep-white-board {
     margin: auto;
@@ -110,23 +110,30 @@
 
 
 #login .input-box {
-    width: 400px;
     height: 85px;
     margin-top: 15px;
 }
 
 #login .input-box .input-label {
-    margin-top: 10px;
-    padding-right: 15px;
+    margin-top: 20px;
     font-size: 140%;
-    width: 150px;
+    width: 120px;
     float: left;
-    text-align: right;
+    text-align: left;
 }
 
 #login .input-box div {
-    width: 250px;
+    width: 300px;
     float: right;
+}
+#login input{
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom-color: #0f0f10;
+    border-radius: 0;
+    background-color: rgba(255, 255, 255, 0);
+    width: 30%;
 }
 
 body {
