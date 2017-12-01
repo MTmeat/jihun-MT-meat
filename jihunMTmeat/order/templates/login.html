@@ -12,12 +12,13 @@
     <div class="highlight-border">
         <div class="white-board">
             <h2><span class="highlight-text">주문자 정보</span>를 작성해주세요.</h2>
-            <div class="deep-white-board">
-                <form id="orderForm" method="post" action="/orderers/login/" novalidate>
+            <form id="orderForm" method="post" action="/orderers/login/" novalidate>
+                <div class="deep-white-board">
+
                     {% csrf_token %}
                     <div class="input-box">
                         <div class="input-label">
-                            <span>이름</span>
+                            이름
                         </div>
                         <div class="ui large input">
                             {{ login_form.name.errors }}
@@ -26,7 +27,7 @@
                     </div>
                     <div class="input-box">
                         <div class="input-label">
-                            <span>이메일</span>
+                            이메일
                         </div>
                         <div class="ui large input">
                             {{ login_form.email.errors }}
@@ -35,7 +36,7 @@
                     </div>
                     <div class="input-box">
                         <div class="input-label">
-                            <span>비밀번호</span>
+                            비밀번호
                         </div>
                         <div class="ui large input">
                             {{ login_form.password.errors }}
@@ -47,9 +48,9 @@
                             입력하신 정보와 일치하는 정보가 없습니다.
                         </p>
                     {% endif %}
-                    <button id="sendOrderButton" type="submit">로그인</button>
-                </form>
-            </div>
+                </div>
+                <button id="sendOrderButton" type="submit">주문확인</button>
+            </form>
         </div>
     </div>
 </div>
